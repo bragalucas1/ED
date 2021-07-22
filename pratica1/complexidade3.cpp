@@ -18,18 +18,18 @@ void encontraPosicoes(const int numeros[],int posicoes[], int n) {
     }
 }
 	
-	
-	
-	
-	
-	
-	/*for(int i=0;i<n;i++)   //para cada numero i, descobre em qual posicao de numeros[] ele se encontra
-		for(int j=0;j<n;j++) //varre o array procurando a posicao onde i se encontra
-			if(numeros[j]==i) 
+
+	/*for(int i=0;i<n;i++){  //para cada numero i, descobre em qual posicao de numeros[] ele se encontra
+		for(int j=0;j<n;j++){/varre o array procurando a posicao onde i se encontra
+			if(numeros[j]==i){
 				posicoes[i] = j; //o numero i se encontra na posicao j do array...
-				//j++; primeira melhoria
+				}
+				break;
+			}
+		}
 				*/
-}
+
+
 
 
 /*
