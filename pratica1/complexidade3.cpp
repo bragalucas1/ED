@@ -13,8 +13,11 @@ using namespace std;
 //Exemplo de saida: apos a execucao da funcao, posicoes sera = {2,0,3,1} 
 //Nesse exemplo, posicoes[3]=1 --> o numero 3 se encontra na posicao 1 de numeros[])
 void encontraPosicoes(const int numeros[],int posicoes[], int n) {
-    for (int i = 0; i < n; i++) {
-        posicoes[numeros[i]] = i;  
+    for (int i = 0; i < n; i++) {   
+        posicoes[numeros[i]] = i;  	
+									//Ao invés de termos 2 for percorrendo os 2 vetores, podemos fazer um array de array, 
+									//de modo que o vetor posições recebe o vetor de numeros, e de acordo com o número, ele atribui a posição designada pro respectivo número,
+									//diminuindo a complexidade de O(N²) para O(n).
     }
 }
 	
