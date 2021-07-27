@@ -14,12 +14,12 @@ using namespace std;
 //Nesse exemplo, posicoes[3]=1 --> o numero 3 se encontra na posicao 1 de numeros[])
 void encontraPosicoes(const int numeros[],int posicoes[], int n) {
     for (int i = 0; i < n; i++) {
-        posicoes[numeros[i]] = i;
+        posicoes[numeros[i]] = i;  
     }
 }
 	
 
-	/*for(int i=0;i<n;i++){  //para cada numero i, descobre em qual posicao de numeros[] ele se encontra
+/*for(int i=0;i<n;i++){  //para cada numero i, descobre em qual posicao de numeros[] ele se encontra
 		for(int j=0;j<n;j++){/varre o array procurando a posicao onde i se encontra
 			if(numeros[j]==i){
 				posicoes[i] = j; //o numero i se encontra na posicao j do array...
@@ -28,7 +28,7 @@ void encontraPosicoes(const int numeros[],int posicoes[], int n) {
 			
 			}
 		}
-				*/
+*/
 
 
 
