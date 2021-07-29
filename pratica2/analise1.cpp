@@ -90,11 +90,12 @@ void funcao8(int n, int m, int k, int v[]) {
 }
 
 //Responda (alem de analisar a complexidade): o que essa funcao faz?
+//O(log n)
 void funcao9(int n) {  //calcula e retorna o valor do log na base 10.
-	if(n==0) return 0;
+	if(n==0) return 0;	//O(log n)
 	return funcao9(n/10)+1;
 }
-
+//O(log n + logm)
 void funcao10(int n, int m, int k, int v[]) {
 	if(n==0 && m==0) return 1;
 	if(n==0) return funcao10(n,m/2,k,v);
@@ -103,31 +104,31 @@ void funcao10(int n, int m, int k, int v[]) {
 
 void funcao11(int n, int m, int k, int v[]) {
 	int ct = 0;
-	for(int i=0;i<n;i++) {
-		for(int j=0;j<v[i];j++) {
+	for(int i=0;i<n;i++) { //n
+		for(int j=0;j<v[i];j++){ //
 			ct += k;
 		}
 	}
 }
-
+//(n*n*n) = O(n³)
 int funcao12(int n) {
     int ans = 0;
-    for(int i=5;i<n;i++) 
-		for(int j=3;j<n;j++) 
-	          for(int k=1;k<n;k++) {
+    for(int i=5;i<n;i++) //n	
+		for(int j=3;j<n;j++)//n
+	          for(int k=1;k<n;k++) {//n
 	             ans += 2;
 	             if(ans%10==0) break;
 	          }
      return ans;
 }
-
+//u*(v + (f/2)*(v/2)) = O(u*(v+fv) ) = O(ufv)
 double funcao13(int v,int u, int f) {
 	double ans = 0;
 	for(int i=0;i<u;i++) {
 	   for(int j=0;j<v;j++) ans -= log(i*j);
 	   ans += log(u+i);
-	   for(int j2=0;j2<f/2;j2++)
-	   	for(int k=v/2;k<v;k++)
+	   for(int j2=0;j2<f/2;j2++)//f/2 * v/2
+	   	for(int k=v/2;k<v;k++) //v/2
 	   		ans += log(j2*k); 
 	}
 	return ans;
@@ -136,9 +137,12 @@ double funcao13(int v,int u, int f) {
 
 //Analise a complexidade de melhor e pior caso dessa função
 //Diga não apenas a complexidade, mas também explique quando esses tempos ocorrem
+
+//Melhor caso: quando está na primeira posição do vetor. Complexidade: O(1).
+//Pior caso: quando não esta no vetor OU está na ultima posição. Complexidade: O(N).
 void funcao14(int n, int m, int k, int v[]) {
-	int ct = 0;
-	for(int i=0;i<n;i++) {
+	int ct = 0;      
+	for(int i=0;i<n;i++) {//n 
 		if(v[i]==m)
 			return i;		
 	}
@@ -147,23 +151,26 @@ void funcao14(int n, int m, int k, int v[]) {
 
 //Analise a complexidade de melhor e pior caso dessa função
 //Diga não apenas a complexidade, mas também explique quando esses tempos ocorrem
+
+//Melhor caso: n = 5 --> O(1), pois não entrará no loop.
+//Pior caso:O(N³) - para valores significantes de N, entrará dentro de todos os loops aninhados, configurando complexidade n³.
 int funcao15(int n, int w) {
     int ans = w;
-    for(int i=5;i<n;i++) 
-		for(int j=3;j<n;j++) 
-	          for(int k=1;k<n;k++) {
+    for(int i=5;i<n;i++) //n
+		for(int j=3;j<n;j++)//n 
+	          for(int k=1;k<n;k++) {//n
 	             ans += 2;
 	             if(ans%10==0) break;
 	          }
      return ans;
 }
 
-
+//n*m = O(NM)
 int funcao16(int n, int w) {
     double ans = w;
-    for(int i=0;i<n;i++) 
-    	for(int j=0;j<n;n--) 
-    		for(int k=0;k<m;k++)
+    for(int i=0;i<n;i++) //1
+    	for(int j=0;j<n;n--)//n 
+    		for(int k=0;k<m;k++)//m	
     			ans += 3.14;
     	
     
