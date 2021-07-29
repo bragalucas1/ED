@@ -2,82 +2,84 @@
 //Exemplo de analise de complexidade:
 //Note que simplificamos ao máximo na notacao O (removendo o n, ja que O(n^2 +n) = O(n^2), pois a parte quadratica "pesa mais")
 //Complexidade: O(n^2 + m + n) = O(n^2 + m)
-void funcao1(int n, int m) {
-	for(int i=0;i<n;i++) 
-		for(int j=0;j<n;j++)
+//O(n² + m + n)
+void funcao1(int n, int m){ 
+	for(int i=0;i<n;i++) //n
+		for(int j=0;j<n;j++)//n
 			ct *= j;
-	
-	for(int k=0;k<m;k++) 
+
+	for(int k=0;k<m;k++) //m
 		ct += 10;
 
-	for(int k=0;k<n;k++) 
+	for(int k=0;k<n;k++) //N
 		ct += 10;
 }
 
 
-
-void funcao2(int n, int m) {
-	for(int i=0;i<n;i++) 
-		for(int j=0;j<n;j++)
+//(n² + n²) = O(n²)
+void funcao2(int n, int m) { 
+	for(int i=0;i<n;i++) //n
+		for(int j=0;j<n;j++)//n
 			ct *= j;
 	
-	for(int k=0;k<m;k++) 
+	for(int k=0;k<m;k++) //1 - pois passa constantes
 		funcao1(30,40);
 
-	for(int k=0;k<n;k++) 
+	for(int k=0;k<n;k++) //n²
 		funcao1(n,200);
 }
 
-
+//(n*k) + m/100000 = O(nk + m)
 void funcao3(int n, int m, int k) {
-	for(int i=0;i<n;i++) 
-		for(int j=0;j<k;j++)
+	for(int i=0;i<n;i++)//n
+		for(int j=0;j<k;j++)//k
 			ct *= m;
 
-	for(int i=0;i<m/100000;i++) {
+	for(int i=0;i<m/100000;i++) {//(m/100000)
 		ct += k;
 	}
 }
 
-
+//O(N²)
 void funcao4(int n, int m, int k, int v[]) {
 	int ct = 0;
-	for(int i=0;i<n;i++) {
-		if(v[i]%2==0) break;
-		for(int j=0;j<n;j++) {
-			ct += v[i] + v[j];
+	for(int i=0;i<n;i++) {//n
+		if(v[i]%2==0) break;//
+		for(int j=0;j<n;j++) {//n
+			ct += v[i] + v[j];//
 		}
 	}
 }
-
+//O(N²)
 void funcao5(int n, int m, int k, int v[]) {
 	int ct = 0;
-	for(int i=0;i<n;i++) {		
-		for(int j=0;j<n;j++) {
-			ct++;
+	for(int i=0;i<n;i++) {//n
+		for(int j=0;j<n;j++) {//n
+			ct++;//1
 			if(ct%2==0) break;
 		}
 	}
 }
 
+//O(N²)
 void funcao6(int n, int m, int k, int v[]) {
 	int ct = 0;
-	for(int i=0;i<n;i++) {		
-		for(int j=0;j<n;j++) {
-			ct+= log(n);
+	for(int i=0;i<n;i++) {//n		
+		for(int j=0;j<n;j++) {//n
+			ct+= log(n);//
 		}
 	}
 }
-
+//O(N²)
 void funcao7(int n, int m, int k, int v[]) {
 	int ct = 0;
-	for(int i=1;i<n;i++) {		
-		for(int j=i;j<n;j++) {
+	for(int i=1;i<n;i++) {		//n		
+		for(int j=i;j<n;j++) {	//n(detalhe pro começo de j) - somatorio - n(n+1)/2
 			ct+= log(n);
 		}
 	}
 }
-
+//O(N*log(m))
 void funcao8(int n, int m, int k, int v[]) {
 	int ct = 0;
 	for(int i=0;i<n;i++) {		
@@ -88,7 +90,7 @@ void funcao8(int n, int m, int k, int v[]) {
 }
 
 //Responda (alem de analisar a complexidade): o que essa funcao faz?
-void funcao9(int n) {
+void funcao9(int n) {  //calcula e retorna o valor do log na base 10.
 	if(n==0) return 0;
 	return funcao9(n/10)+1;
 }
