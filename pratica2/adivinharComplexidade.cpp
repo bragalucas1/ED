@@ -38,7 +38,7 @@ int main(int argc, char**argv) {
 	int *numeros = new int[n];
 
 	//le a permutacao de numeros.
-	for(int i=0;i<n;i++) numeros[i] = i;
+	for(int i=0;i<n;i++) numeros[i] = i; //O(n²)
 
 	auto t0 = std::chrono::system_clock::now();
 	

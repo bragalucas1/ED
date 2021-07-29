@@ -11,15 +11,15 @@ using namespace std;
 void dfjkhbjknbjkcjfhui(int numeros[], int n) {
 	double ct = 0;
 	for(int i=0;i<n;i++) 
-		ct += log(numeros[i]);
+		ct += log(numeros[i]); //o(1)
 	cout << ct << "\n";
 }
 
 
-void dfjkhbjknbjkcjfhui2(int numeros[], int n) {
+/void dfjkhbjknbjkcjfhui2(int numeros[], int n) { //retorna o valor do numero ao quadrado
 	double ct = 0;
-	for(int i=0;i<n;i++) 
-		ct += (find( numeros, numeros+n, 654618) - numeros);
+	for(int i=0;i<n;i++) //o(n)
+		ct += (find( numeros, numeros+n, 654618) - numeros);//o(n)
 	cout << ct << "\n";
 }
 
