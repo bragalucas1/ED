@@ -82,8 +82,8 @@ void funcao7(int n, int m, int k, int v[]) {
 //O(N*log(m))
 void funcao8(int n, int m, int k, int v[]) {
 	int ct = 0;
-	for(int i=0;i<n;i++) {		
-		for(int j=0;j<log(m);j++) {
+	for(int i=0;i<n;i++) {		//n
+		for(int j=0;j<log(m);j++) { //log(m)
 			ct += sin(k);
 		}
 	}
@@ -101,11 +101,11 @@ void funcao10(int n, int m, int k, int v[]) {
 	if(n==0) return funcao10(n,m/2,k,v);
 	else return funcao10(n/2,m,k,v);
 }
-
+//(n*M) = O(nM)
 void funcao11(int n, int m, int k, int v[]) {
 	int ct = 0;
 	for(int i=0;i<n;i++) { //n
-		for(int j=0;j<v[i];j++){ //
+		for(int j=0;j<v[i];j++){ // Tomemos a variavél M como o maior elemento do array. Desse modo,a complexidade seria O(M).
 			ct += k;
 		}
 	}
@@ -168,9 +168,9 @@ int funcao15(int n, int w) {
 //n*m = O(NM)
 int funcao16(int n, int w) {
     double ans = w;
-    for(int i=0;i<n;i++) //1
+    for(int i=0;i<n;i++) //1 - adquirido por meio de compilaçaõ do código, assumindo M como variavél do algoritmo.
     	for(int j=0;j<n;n--)//n 
-    		for(int k=0;k<m;k++)//m	
+    		for(int k=0;k<m;k++)//m 
     			ans += 3.14;
     	
     
