@@ -5,6 +5,7 @@
 #include <cmath>
 #include <vector>
 #include <string>
+#include <cstring>
 using namespace std;
 
 void insertionSort(int *v, int n) {
@@ -27,10 +28,33 @@ struct Pessoa {
 	double altura;
 };
 
-
+void ordenaCPF(Pessoa *pessoas, int n){
+	}
 
 void ordenaPessoas(Pessoa *pessoas,int n) {
+	string aux;
+	for (int i = 1; i < n; i++){
+		if(strcmp(pessoas[i].nome,pessoas[i+1].nome)=0){
+			ordenaCPF(pessoas,n);
+		}
+		else if (strcmp(pessoas[i].nome,pessoas[i+1].nome)>0)
+		{
+			strcpy(aux,pessoas[i].nome);
+			strcpy(pessoas[i].nome,pessoas[i+1].nome);
+			strcpy(pessoas[i+1].nome, aux);
+		}
+	}
+}
 
+
+void ordenaCPF(Pessoa *pessoas, int n){
+	for (int i = 1; i < n; i++){}
+}
+
+void ordenaNome(Pessoa *pessoa, int n){
+	for (int i = 1; i < n; i++){
+
+	}
 }
 
 /*
