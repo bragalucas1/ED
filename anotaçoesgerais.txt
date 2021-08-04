@@ -8,3 +8,11 @@ O(2^N) = 20
 O(N!) = 12 - 13.
 
 INSTANTANEAMENTE ^^^.
+
+Mede-se o tempo de execução afim de podermos aprimorar o algoritmo. (Tempo de execução e uso de espaço(memória)). 
+O tempo de execução depende do tamanho da entrada do algoritmo - quanto maior a entrada, maior o tempo.
+
+
+---ANÁLISE DE COMPLEXIDADE INSERTION SORT----
+Melhor caso: ocorre quando a lista já está em ordem crescente(lista ordenada). - O(N)
+Pior caso: ocorre quando os elementos da lista estão em ordem decrescente - O(N) = n(n-1)/2
