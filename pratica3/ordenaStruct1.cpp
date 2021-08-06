@@ -21,7 +21,6 @@ void insertionSort(int *v, int n) {
     }
 }
 
-
 struct Pessoa {
 	string nome;
 	int cpf;
@@ -29,7 +28,7 @@ struct Pessoa {
 };
 
 void ordenaCPF(Pessoa *pessoas, int n);//declaração de uma funçao que posteriormente será utilizada
-
+void ordenaNome(Pessoa *pessoas, int n);//declaração de uma funçao que posteriormente será utilizada
 
 
 void ordenaPessoas(Pessoa *pessoas,int n){ 
@@ -38,44 +37,49 @@ void ordenaPessoas(Pessoa *pessoas,int n){
 		if(pessoas[i].nome == pessoas[i+1].nome){
 			ordenaCPF(pessoas,n);
 		}
-		else{
-			
-		}
+		
+	}
 	
-
-	/*for (int i = 1; i < n; i++){ //implementação do insection sort
-        string aux = pessoas[i].nome;
-        int j = i-1;
-        while(j >= 0 && pessoas[j].nome > aux) {
-            pessoas[j+1].nome = pessoas[j].nome;
-            j--;
-        }
-    	pessoas[j+1].nome = aux;
-    }*/
 }
+			
+		
 
 
 void ordenaCPF(Pessoa *pessoas, int n){
-	for (int i = 1; i < n; i++){
-		int aux2 = pessoas[i].cpf; //string auxiliar que receberá os respectivos CPF
-		int j = i -1;
-		while(j>=0 && pessoas[j].cpf > aux2){
+	for (int i = 1; i < n; i++){        
+        
+		
+		int aux2 = pessoas[i].cpf;
+		double aux3 = pessoas[i].altura;
+		int j = i+1;
+		while(j >= 0 && pessoas[j].cpf < aux2){
+			
 			pessoas[j+1].cpf = pessoas[j].cpf;
+			pessoas[j+1].altura = pessoas[j].altura;
 			j--;
 		}
+		
+		
 		pessoas[j+1].cpf = aux2;
+		pessoas[j+1].altura = aux3;
 	}
 }
 
 void ordenaNome(Pessoa *pessoas, int n){
 	for (int i = 1; i < n; i++){ //implementação do insection sort
-        string aux = pessoas[i].nome;
-        int j = i-1;
-        while(j >= 0 && pessoas[j].nome > aux) {
+        string aux = pessoas[i].nome;                       
+        int aux2 = pessoas[i].cpf;
+		double aux3 = pessoas[i].altura;
+		int j = i-1;										
+        while(j >= 0 && pessoas[j].nome > aux){														
             pessoas[j+1].nome = pessoas[j].nome;
+			pessoas[j+1].cpf = pessoas[j].cpf;
+			pessoas[j+1].altura = pessoas[j].altura;
             j--;
         }
     	pessoas[j+1].nome = aux;
+		pessoas[j+1].cpf = aux2;
+		pessoas[j+1].altura = aux3;
     }
 }
 
