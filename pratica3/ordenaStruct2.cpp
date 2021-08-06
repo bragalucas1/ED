@@ -35,25 +35,59 @@ struct Pessoa {
 
 void ordenaPessoas(Pessoa *pessoas,int n) {
 	for (int i = 0; i < n-1; i++){
-		string aux;
-		int cpfaux;
-		double alturaaux;
+		int ct = 0;
+		string aux = pessoas[i].nome; 
+		int auxcpf = pessoas[i].cpf;
+		double aux2 = pessoas[i].altura;
 		int posMenor = i;
-		for (int j = i+1; j < n; j++)
-            if (pessoas[j].nome < pessoas[posMenor].nome)
+		for (int j = i+1; j < n; j++){
+            if(pessoas[posMenor].nome == pessoas[j].nome){
+				string troca1 = pessoas[posMenor].nome;
+				int troca2 =	pessoas[posMenor].cpf;
+				double troca3 = pessoas[posMenor].altura;
+
+				pessoas[posMenor].nome = pessoas[j].nome;
+				pessoas[posMenor].cpf = pessoas[j].cpf;
+				pessoas[posMenor].altura = pessoas[j].altura;
+
+				pessoas[j].nome = troca1;
+				pessoas[j].cpf = troca2;
+				pessoas[j].altura = troca3;
+				}
+			
+			
+			if(pessoas[j].nome < pessoas[posMenor].nome){
                 posMenor = j;
-				pessoas[posMenor+1].nome = pessoas[posMenor].nome;
-				pessoas[posMenor+1].cpf = pessoas[posMenor].cpf;
-				pessoas[posMenor+1].altura = pessoas[posMenor].altura;
+			}
+			
+		}
+			
+			
+			
 		
-		aux = pessoas[i].nome;
+		
+		/*if(pessoas[i].nome == pessoas[i].nome){
+			pessoas[i+1].nome = pessoas[i].nome; //realiza a ordenação baseado no cpf menor
+			pessoas[i+1].cpf = pessoas[i].cpf;
+			pessoas[i+1].altura = pessoas[i].altura;
+			}
+		}*/
+		
+		cout << ct << "  " << endl;
         pessoas[i].nome = pessoas[posMenor].nome;
         pessoas[posMenor].nome = aux;
+		pessoas[i].cpf = pessoas[posMenor].cpf;
+		pessoas[posMenor].cpf = auxcpf;
+		pessoas[i].altura = pessoas[posMenor].altura;
+		pessoas[posMenor].altura = aux2;
+		
+		
 		}
+
 	}		
 
 
-/*
+/* 
 Exemplo de entrada:
 5
 Dbc 123 1.8
