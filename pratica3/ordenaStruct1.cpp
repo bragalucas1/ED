@@ -28,33 +28,55 @@ struct Pessoa {
 	double altura;
 };
 
-void ordenaCPF(Pessoa *pessoas, int n){
-	}
+void ordenaCPF(Pessoa *pessoas, int n);//declaração de uma funçao que posteriormente será utilizada
 
-void ordenaPessoas(Pessoa *pessoas,int n) {
-	string aux;
+
+
+void ordenaPessoas(Pessoa *pessoas,int n){ 
 	for (int i = 1; i < n; i++){
-		if(strcmp(pessoas[i].nome,pessoas[i+1].nome)=0){
+		ordenaNome(pessoas,n);
+		if(pessoas[i].nome == pessoas[i+1].nome){
 			ordenaCPF(pessoas,n);
 		}
-		else if (strcmp(pessoas[i].nome,pessoas[i+1].nome)>0)
-		{
-			strcpy(aux,pessoas[i].nome);
-			strcpy(pessoas[i].nome,pessoas[i+1].nome);
-			strcpy(pessoas[i+1].nome, aux);
+		else{
+			
 		}
-	}
+	
+
+	/*for (int i = 1; i < n; i++){ //implementação do insection sort
+        string aux = pessoas[i].nome;
+        int j = i-1;
+        while(j >= 0 && pessoas[j].nome > aux) {
+            pessoas[j+1].nome = pessoas[j].nome;
+            j--;
+        }
+    	pessoas[j+1].nome = aux;
+    }*/
 }
 
 
 void ordenaCPF(Pessoa *pessoas, int n){
-	for (int i = 1; i < n; i++){}
+	for (int i = 1; i < n; i++){
+		int aux2 = pessoas[i].cpf; //string auxiliar que receberá os respectivos CPF
+		int j = i -1;
+		while(j>=0 && pessoas[j].cpf > aux2){
+			pessoas[j+1].cpf = pessoas[j].cpf;
+			j--;
+		}
+		pessoas[j+1].cpf = aux2;
+	}
 }
 
-void ordenaNome(Pessoa *pessoa, int n){
-	for (int i = 1; i < n; i++){
-
-	}
+void ordenaNome(Pessoa *pessoas, int n){
+	for (int i = 1; i < n; i++){ //implementação do insection sort
+        string aux = pessoas[i].nome;
+        int j = i-1;
+        while(j >= 0 && pessoas[j].nome > aux) {
+            pessoas[j+1].nome = pessoas[j].nome;
+            j--;
+        }
+    	pessoas[j+1].nome = aux;
+    }
 }
 
 /*
