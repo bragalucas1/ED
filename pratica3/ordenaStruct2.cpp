@@ -33,57 +33,40 @@ struct Pessoa {
 
 
 
-void ordenaPessoas(Pessoa *pessoas,int n) {
+void ordenaPessoas(Pessoa *pessoas,int n) { //aplicação do metódo selectionsort para ordenar struct
 	for (int i = 0; i < n-1; i++){
 		int ct = 0;
-		string aux = pessoas[i].nome; 
+		string aux = pessoas[i].nome;   //passada do parametro para variaveis auxiliares
 		int auxcpf = pessoas[i].cpf;
 		double aux2 = pessoas[i].altura;
 		int posMenor = i;
 		for (int j = i+1; j < n; j++){
-            if(pessoas[posMenor].nome == pessoas[j].nome){
-				string troca1 = pessoas[posMenor].nome;
-				int troca2 =	pessoas[posMenor].cpf;
+            if(pessoas[posMenor].nome == pessoas[j].nome){ //verifica o caso de ter nomes iguais
+				string troca1 = pessoas[posMenor].nome;       //nesta etapa, funciona semelhante o algoritmo da bolha, 
+				int troca2  = pessoas[posMenor].cpf;		 //realizando a troca das variáveis de nome igual
 				double troca3 = pessoas[posMenor].altura;
 
-				pessoas[posMenor].nome = pessoas[j].nome;
+				pessoas[posMenor].nome = pessoas[j].nome;    //atribui o valor da menor funçao, jogando a pra posição de cima
 				pessoas[posMenor].cpf = pessoas[j].cpf;
 				pessoas[posMenor].altura = pessoas[j].altura;
 
-				pessoas[j].nome = troca1;
+				pessoas[j].nome = troca1;					//reatribui os valores inerentes do nome com maior cpf
 				pessoas[j].cpf = troca2;
 				pessoas[j].altura = troca3;
 				}
-			
-			
-			if(pessoas[j].nome < pessoas[posMenor].nome){
+	
+			if(pessoas[j].nome < pessoas[posMenor].nome){  //caso onde não há nomes iguais
                 posMenor = j;
 			}
 			
 		}
-			
-			
-			
-		
-		
-		/*if(pessoas[i].nome == pessoas[i].nome){
-			pessoas[i+1].nome = pessoas[i].nome; //realiza a ordenação baseado no cpf menor
-			pessoas[i+1].cpf = pessoas[i].cpf;
-			pessoas[i+1].altura = pessoas[i].altura;
-			}
-		}*/
-		
-		cout << ct << "  " << endl;
-        pessoas[i].nome = pessoas[posMenor].nome;
+        pessoas[i].nome = pessoas[posMenor].nome;      //atribuição e passagem de valores;
         pessoas[posMenor].nome = aux;
 		pessoas[i].cpf = pessoas[posMenor].cpf;
 		pessoas[posMenor].cpf = auxcpf;
 		pessoas[i].altura = pessoas[posMenor].altura;
 		pessoas[posMenor].altura = aux2;
-		
-		
 		}
-
 	}		
 
 
