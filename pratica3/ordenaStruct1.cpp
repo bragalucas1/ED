@@ -70,13 +70,13 @@ void ordenaCPF(Pessoa *pessoas, int n){
 
 
 void ordenaNome(Pessoa *pessoas, int n){
-	for (int i = 1; i < n; i++){ //implementação do insection sort
+	for (int i = 1; i < n; i++){    //implementação do insection sort a fim de ordenar os nomes.
         string aux = pessoas[i].nome;                       
         int aux2 = pessoas[i].cpf;
 		double aux3 = pessoas[i].altura;
 		int j = i-1;
 		while(j >= 0 && pessoas[j].nome > aux){														
-			pessoas[j+1].nome = pessoas[j].nome;
+			pessoas[j+1].nome = pessoas[j].nome;     //passa-se tudo a fim de manter os dados inerentes a cada pessoa.
 			pessoas[j+1].cpf = pessoas[j].cpf;
 			pessoas[j+1].altura = pessoas[j].altura;
 			j--;
@@ -97,6 +97,7 @@ Abc 194 1.7
 Abc 125 1.9
 Teste 100 1.1
 Alto 300 3.2
+
 Exemplo de saida:
 
 Abc 125 1.9

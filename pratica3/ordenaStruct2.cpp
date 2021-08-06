@@ -34,8 +34,24 @@ struct Pessoa {
 
 
 void ordenaPessoas(Pessoa *pessoas,int n) {
+	for (int i = 0; i < n-1; i++){
+		string aux;
+		int cpfaux;
+		double alturaaux;
+		int posMenor = i;
+		for (int j = i+1; j < n; j++)
+            if (pessoas[j].nome < pessoas[posMenor].nome)
+                posMenor = j;
+				pessoas[posMenor+1].nome = pessoas[posMenor].nome;
+				pessoas[posMenor+1].cpf = pessoas[posMenor].cpf;
+				pessoas[posMenor+1].altura = pessoas[posMenor].altura;
+		
+		aux = pessoas[i].nome;
+        pessoas[i].nome = pessoas[posMenor].nome;
+        pessoas[posMenor].nome = aux;
+		}
+	}		
 
-}
 
 /*
 Exemplo de entrada:
