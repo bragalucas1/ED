@@ -9,7 +9,7 @@
 using namespace std;
 
 void insertionSort(int *v, int n) {
-    for (int i = 1; i < n; i++) {
+    for (int i = 0; i < n; i++) {
         // o arranjo entre as posicoes [0,i) já está ordenado
         int elemInserir = v[i];
         int j = i-1;
@@ -32,54 +32,60 @@ void ordenaNome(Pessoa *pessoas, int n);//declaração de uma funçao que poster
 
 
 void ordenaPessoas(Pessoa *pessoas,int n){ 
-	for (int i = 1; i < n; i++){
-		ordenaNome(pessoas,n);
-		if(pessoas[i].nome == pessoas[i+1].nome){
+	int ct = 0;
+	for (int i = 0; i < n; i++){
+		if(pessoas[i].nome == pessoas[i].nome){
 			ordenaCPF(pessoas,n);
 		}
-		
+		ordenaNome(pessoas,n);
 	}
-	
 }
-			
+
 		
 
 
 void ordenaCPF(Pessoa *pessoas, int n){
-	for (int i = 1; i < n; i++){        
-        
-		
-		int aux2 = pessoas[i].cpf;
-		double aux3 = pessoas[i].altura;
-		int j = i+1;
-		while(j >= 0 && pessoas[j].cpf < aux2){
+	 for (int i = 1; i < n; i++) {
+        // o arranjo entre as posicoes [0,i) já está ordenado
+        string aux = pessoas[i].nome; 
+		int auxcpf = pessoas[i].cpf;
+		double aux2 = pessoas[i].altura;
+        int j = i-1;
+		while(j >= 0 && pessoas[j].cpf > auxcpf){
+			if(pessoas[i].nome == pessoas[i].nome){  //compara se existe nome repetido dentro do array, caso houver
+				pessoas[j+1].nome = pessoas[j].nome; //realiza a ordenação baseado no cpf menor
+				pessoas[j+1].cpf = pessoas[j].cpf;
+				pessoas[j+1].altura = pessoas[j].altura;
+				j--;
+			}
 			
-			pessoas[j+1].cpf = pessoas[j].cpf;
-			pessoas[j+1].altura = pessoas[j].altura;
-			j--;
 		}
-		
-		
-		pessoas[j+1].cpf = aux2;
-		pessoas[j+1].altura = aux3;
-	}
+        pessoas[j+1].cpf = auxcpf;
+		pessoas[j+1].nome = aux;
+		pessoas[j+1].altura = aux2;
+    }
 }
+
+        
+
 
 void ordenaNome(Pessoa *pessoas, int n){
 	for (int i = 1; i < n; i++){ //implementação do insection sort
         string aux = pessoas[i].nome;                       
         int aux2 = pessoas[i].cpf;
 		double aux3 = pessoas[i].altura;
-		int j = i-1;										
-        while(j >= 0 && pessoas[j].nome > aux){														
-            pessoas[j+1].nome = pessoas[j].nome;
+		int j = i-1;
+		while(j >= 0 && pessoas[j].nome > aux){														
+			pessoas[j+1].nome = pessoas[j].nome;
 			pessoas[j+1].cpf = pessoas[j].cpf;
 			pessoas[j+1].altura = pessoas[j].altura;
-            j--;
-        }
+			j--;
+		}
+	
     	pessoas[j+1].nome = aux;
 		pessoas[j+1].cpf = aux2;
 		pessoas[j+1].altura = aux3;
+		
     }
 }
 
@@ -91,13 +97,15 @@ Abc 194 1.7
 Abc 125 1.9
 Teste 100 1.1
 Alto 300 3.2
+Exemplo de saida:
 
-Saida esperada:
 Abc 125 1.9
 Abc 194 1.7
 Alto 300 3.2
 Dbc 123 1.8
 Teste 100 1.1
+
+
 */
 
 
