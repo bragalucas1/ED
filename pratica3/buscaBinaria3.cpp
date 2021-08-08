@@ -18,16 +18,17 @@ using namespace std;
 int buscaBin(int *array,int begin, int end, int chave) {
 	if (begin > end) return -1;
 	int meio = (end-begin)/2 + begin;
-
-	while(array[meio-1] == chave){
+	
+	while(array[meio-1]==chave){ 
 		return meio-1;
 	}
 	
+	if (array[meio] == chave)
+		return meio;
 	if (array[meio] > chave)
 		return buscaBin(array,begin, meio-1, chave); 
 	return buscaBin(array,meio+1, end, chave); 	
 }
-
 
 //Busca sequencial
 //Pesquisa pelo elemento "chave" entre as posicoes begin e end (inclusive) do array 
