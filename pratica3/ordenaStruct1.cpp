@@ -32,11 +32,8 @@ void ordenaNome(Pessoa *pessoas, int n);//declaração de uma funçao que poster
 
 
 void ordenaPessoas(Pessoa *pessoas,int n){ 
-	int ct = 0;
-	for (int i = 0; i < n; i++){
-		if(pessoas[i].nome == pessoas[i].nome){
-			ordenaCPF(pessoas,n);
-		}
+	for (int i = 0; i < n; i++){		
+		ordenaCPF(pessoas,n);
 		ordenaNome(pessoas,n);
 	}
 }
@@ -52,19 +49,17 @@ void ordenaCPF(Pessoa *pessoas, int n){
 		double aux2 = pessoas[i].altura;
         int j = i-1;
 		while(j >= 0 && pessoas[j].cpf > auxcpf){
-			if(pessoas[i].nome == pessoas[i].nome){  //compara se existe nome repetido dentro do array, caso houver
 				pessoas[j+1].nome = pessoas[j].nome; //realiza a ordenação baseado no cpf menor
 				pessoas[j+1].cpf = pessoas[j].cpf;
 				pessoas[j+1].altura = pessoas[j].altura;
 				j--;
 			}
-			
-		}
-        pessoas[j+1].cpf = auxcpf;
-		pessoas[j+1].nome = aux;
-		pessoas[j+1].altura = aux2;
+			pessoas[j+1].cpf = auxcpf;
+			pessoas[j+1].nome = aux;
+			pessoas[j+1].altura = aux2;
+		}	
     }
-}
+
 
         
 
