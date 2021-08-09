@@ -16,19 +16,21 @@ using namespace std;
 //no caso do elemento nao estar no array
 //Modifique apenas a funcao buscaBin!!!
 int buscaBin(int *array,int begin, int end, int chave) {
-	if (begin > end) return -1;
-	
-	int meio = (end-begin)/2 + begin;
-
-	while(array[meio-1] == chave){ 
-		return meio-1;
-	}
-	
-	if (array[meio] == chave)
-		return meio;
-	if (array[meio] > chave)
-		return buscaBin(array,begin, meio-1, chave); 
-	return buscaBin(array,meio+1, end, chave); 	
+  if (begin > end) return -1;
+  
+  int meio = (end-begin)/2 + begin;
+  
+  if (array[meio] == chave){
+    if(array[meio-1] == chave && (meio-1) >= 0){ 
+      	return buscaBin(array,begin, meio-1, chave); 
+    }
+	else{
+      	return meio;
+    }
+  }    
+  if(array[meio] > chave)
+    return buscaBin(array,begin, meio-1, chave); 
+  return buscaBin(array,meio+1, end, chave);   
 }
 
 //Busca sequencial
