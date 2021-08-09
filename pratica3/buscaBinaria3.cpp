@@ -17,9 +17,10 @@ using namespace std;
 //Modifique apenas a funcao buscaBin!!!
 int buscaBin(int *array,int begin, int end, int chave) {
 	if (begin > end) return -1;
-	int meio = (end-begin)/2 + begin;
 	
-	while(array[meio-1]==chave){ 
+	int meio = (end-begin)/2 + begin;
+
+	while(array[meio-1] == chave){ 
 		return meio-1;
 	}
 	
