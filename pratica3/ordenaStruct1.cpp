@@ -48,7 +48,7 @@ void ordenaCPF(Pessoa *pessoas, int n){
 		int auxcpf = pessoas[i].cpf;
 		double aux2 = pessoas[i].altura;
         int j = i-1;
-		while((j >= 0) && (pessoas[j].cpf > auxcpf) && (pessoas[j].nome==aux)){ //se o cpf da frente for maior que o de tras, ordena.
+		while((j >= 0) && (pessoas[j].cpf > auxcpf) && (pessoas[j].nome == aux)){ //se o cpf da frente for maior que o de tras, ordena.
 				pessoas[j+1].nome = pessoas[j].nome; //realiza a ordenação baseado no cpf menor
 				pessoas[j+1].cpf = pessoas[j].cpf;
 				pessoas[j+1].altura = pessoas[j].altura;
