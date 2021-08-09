@@ -17,7 +17,18 @@ int taxaVideo,taxaDownload,tamanho;
 //tempoCarregamento indica quanto tempo voce irá aguardar para começar assistir ao vídeo
 //Implemente esta funcao
 bool consigoAssistirSemPausas(int tempoCarregamento) {
-	
+	int DownloadedBytes;
+	DownloadedBytes = taxaDownload*tempoCarregamento;
+
+	for(int i = 0; i<tamanho; i++){
+		DownloadedBytes = DownloadedBytes - taxaVideo + taxaDownload; //15 + 3 - 10 = 8 bytes - retirado do pdf e adaptado
+	}
+	if(DownloadedBytes > 0){
+		return true;
+	}
+	else{
+	return false;
+	}
 }
 
 
