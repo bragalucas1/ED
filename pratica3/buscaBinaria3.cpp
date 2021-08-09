@@ -20,15 +20,15 @@ int buscaBin(int *array,int begin, int end, int chave) {
   
   int meio = (end-begin)/2 + begin;
   
-  if (array[meio] == chave){
-    if(array[meio-1] == chave && (meio-1) >= 0){ 
-      	return buscaBin(array,begin, meio-1, chave); 
+  if (array[meio] >= chave){
+    if(array[meio-1] >= chave && (meio-1) >= 0){ 
+      return buscaBin(array,begin, meio-1, chave); 
     }
 	else{
-      	return meio;
+      return meio;
     }
   }    
-  if(array[meio] > chave)
+  if (array[meio] > chave)
     return buscaBin(array,begin, meio-1, chave); 
   return buscaBin(array,meio+1, end, chave);   
 }
