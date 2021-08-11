@@ -1,0 +1,2 @@
+Atenção: nesses exemplos de saídas há comentários que seu programa não deverá gerar. Os comentários estão entre "[]" e servem
+para ajudá-los a entender as operações que estão acontecendo. Sua saída deverá ser a mesma dos exemplos caso todas linhas começando com "[" sejam removidas.

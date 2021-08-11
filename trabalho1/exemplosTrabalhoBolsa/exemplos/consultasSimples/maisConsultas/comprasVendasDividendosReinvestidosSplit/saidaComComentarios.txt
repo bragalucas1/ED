@@ -1,0 +1,51 @@
+[2021-6-1]
+[Comprando acao BBAS3 por (qt x preco) 100 x 1000 = 100000]
+[2021-6-2]
+[Recebendo dividendos de BBAS3, Total: 100 x 150 = 15000]
+[Serao reinvestidos dividendos de BBAS3 valor a reinvestir: 15000]
+[Comprando acao BBAS3 por (qt x preco) 15 x 1000 = 15000]
+[2021-6-4]
+[Comprando acao BBAS3 por (qt x preco) 200 x 1500 = 300000]
+[2021-6-21]
+[ acao BBAS3 sofrendo split 10:1, 315 --> 3150]
+[Vendendo acao BBAS3 por (qt x preco) 1000 x 150 = 150000]
+[2021-6-30]
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Fechamento do mes (2021-6-30)
+--------------------------------------------------------------------------------
+Acao      Quantidade    Valor Atual    Custo Total     Dividendos      Operacoes
+BBAS3           2150           3225           2832            150            182
+--------------------------------------------------------------------------------
+Lucro total do mes:                                           150            182
+
+Totais ate hoje:
+--------------------------------------------------------------------------------------------------------------
+Acao      Quantidade    Valor Atual    Custo Total    Valorizacao      Operacoes     Dividendos          Total
+BBAS3           2150           3225           2832            392            182            150            725
+--------------------------------------------------------------------------------------------------------------
+Totais ate o momento:          3225           2832            392            182            150            725
+
+[2021-7-2]
+[Comprando acao BBAS3 por (qt x preco) 1000 x 50 = 50000]
+[2021-7-5]
+[Recebendo dividendos de BBAS3, Total: 3150 x 17.5 = 55125]
+[Serao reinvestidos dividendos de BBAS3 valor a reinvestir: 55125]
+[Comprando acao BBAS3 por (qt x preco) 1102 x 50 = 55100]
+[2021-7-28]
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Fechamento do mes (2021-7-28)
+--------------------------------------------------------------------------------
+Acao      Quantidade    Valor Atual    Custo Total     Dividendos      Operacoes
+BBAS3           4252           8504           3883            551              0
+--------------------------------------------------------------------------------
+Lucro total do mes:                                           551              0
+
+Totais ate hoje:
+--------------------------------------------------------------------------------------------------------------
+Acao      Quantidade    Valor Atual    Custo Total    Valorizacao      Operacoes     Dividendos          Total
+BBAS3           4252           8504           3883           4620            182            701           5504
+--------------------------------------------------------------------------------------------------------------
+Totais ate o momento:          8504           3883           4620            182            701           5504
+
