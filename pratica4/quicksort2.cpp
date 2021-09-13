@@ -51,11 +51,11 @@ void quickSort2(int *v, int beg, int end) {
     if(beg == end)
         return;
     
-    if(end-beg<50){
+    if(end-beg<50){  //caso a entrada seja um numero suficientemente eficiente, usa o método insertionsort
         insertionSort(v,beg,end);
     }
   
-    else{
+    else{               //caso não seja, aplica-se o método quicksort tradicional.
     int pos = particiona(v,beg,end,beg);
     quickSort2(v, beg, pos);
     quickSort2(v, pos + 1, end);

@@ -21,7 +21,7 @@ int buscaBin(int *array,int begin, int end, int chave) {
 //Pesquisa pelo elemento "chave" entre as posicoes begin e end (inclusive) do array 
 //Retorna -1 se elemento nao esta no array
 int buscaBinIterativa(int *array,int begin, int end, int chave) {
-	while(begin <= end) {
+	while(begin <= end){
 		int meio = (end-begin)/2 + begin;
 		if (array[meio] == chave)
 			return meio;

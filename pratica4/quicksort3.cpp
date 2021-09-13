@@ -53,7 +53,7 @@ void quickSort2(int *v, int beg, int end){
     if(beg == end)
         return;
     
-    if(end-beg < 50){
+    if(end-beg < 50){ //caso a entrada seja um numero suficientemente eficiente, usa o método insertionsort
         insertionSort(v,beg,end);
     }
     else{
