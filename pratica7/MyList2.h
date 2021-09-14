@@ -60,9 +60,9 @@ public:
 	void push_back(const T&);
 	void push_front(const T&);
 	void insert(const T&,iterator where); //insere o primeiro argumento NA POSICAO apontada pelo segundo elemento
-	int eraseMatchingElements(const T &elem);																				//os outros elementos sao deslocados		
-	bool compare(const iterator, const iterator) const;																//diferentemente da lista simplesmente encadeada, aqui podemos inserir um elemento na posicao
-	void reverse();																			// "where" de forma eficiente!
+	int eraseMatchingElements(const T &elem);																				//os outros elementos sao deslocados																	//diferentemente da lista simplesmente encadeada, aqui podemos inserir um elemento na posicao
+	void reverse();	
+	bool compare(const iterator, const iterator) const;																			// "where" de forma eficiente!
 	iterator erase(iterator elem); //remove o elemento apontado por Elem
 														//retorna o (apontador) para o elemento apos o removido
 	
@@ -219,7 +219,6 @@ int MyList2<T>::eraseMatchingElements(const T &elem){
 		else
 			temp = temp->next;
 	}
-	delete temp;
 	return removed;
 }
 ////////////////FUNÇÃO REVERSE//////////////////////////
@@ -244,13 +243,13 @@ void MyList2<T>::reverse(Node<T> *n){
 ///////////FUNCAO COMPARE/////////////////////////
 template<class T>
 bool MyList2<T>::compare(const iterator it1, const iterator it2) const{
-	if(it1 == it2) 
-		return false;
-	if(it1->next == it2)
-		return true;
-	if(it1->next == NULL)
-		return false;
-	return compare(it1->next,it2);
+	if (it1 == it2)
+    	return false;
+  	if (it1->next == it2)
+    	return true;
+  	if (it1->next == NULL)
+    	return false;
+  return compare(it1->next, it2);
 }
 
 //insere o elemento na posicao NA posicao nodeBefore
