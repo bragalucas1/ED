@@ -96,7 +96,7 @@ private:
 	void destroy(iterator it);
 	int size (iterator curr) const;
 	void reverse(Node<T> *N);			
-	void comp(const iterator it1, const iterator it2, bool & c) const;
+	
 };
 
 
@@ -119,11 +119,13 @@ void MyList2<T>::destroy() { // Lab...
 	dataSize = 0;
 	destroy(dataFirst);
 }
+/////////////////////Funcão Size Recursiva///////
 template<class T>
 int MyList2<T>::size() const {
 	iterator curr = dataLast;
 	return size(curr);
 }
+
 template<class T>
 int MyList2<T>::size(iterator curr)const{
 	if(curr == NULL){
@@ -132,6 +134,7 @@ int MyList2<T>::size(iterator curr)const{
 	else
 		return 1 + size(curr->prev);
 }
+/////////////////////////////////////////////////
 template<class T>
 void MyList2<T>::create() {
 	dataFirst = dataLast  = NULL;
@@ -239,18 +242,6 @@ void MyList2<T>::reverse(Node<T> *n){
 ///////////////////////////////////////////////////
 
 ///////////FUNCAO COMPARE/////////////////////////
-/*template<class T>
-void MyList2<T>::comp(const iterator it1, const iterator it2, bool & teste) const{
-	if(it2->prev){
-		if(it2->prev == it1){
-			teste = true;
-			return;
-		}
-		comp(it1,it2->prev,teste);
-	}
-
-}*/
-
 template<class T>
 bool MyList2<T>::compare(const iterator it1, const iterator it2) const{
 	if(it1 == it2) 
