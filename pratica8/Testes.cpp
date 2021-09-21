@@ -9,24 +9,28 @@ void reverse(MyList2<T> &list) {
   MyList2Iterator<T> first = list.begin();
   MyList2Iterator<T> last = list.begin();
 
-  if(first == list.end()){
+  if(first == list.end()){ //caso lista vazia - retorna
     return;
   }
+
   MyList2Iterator<T> aux = list.begin();
 
-  int cursor = 0;
+  int cursor = 0; //contagem de elementos da lista
 
-  while(first != list.end()) {
-    cursor++;
-    last=first;
-    ++first;
+  while(first != list.end()) { //percorre a lista toda
+    cursor++; //incrementa a partir do numero de elem da lista
+    last=first; //a cada passa de nodo, o last ''acompanha'' o first
+    ++first;  //anda com o first na lista
   }
-  first = aux;
-  for(int i=0;i<=(cursor/2);i++){
-    if((cursor %2 == 0) && (i == cursor/2)){
+  
+  first = aux; //first recebe o primeiro elemento da lista
+
+  for(int i = 0; i <= (cursor/2);i++){ //percorremos metade da lista - trocamos 2 elementos por evz - se usarmos apenas < NAÕ DA caso par
+    if((cursor % 2 == 0) && (i == cursor/2)){ // tratar o caso impar - se a listar for par e estivermos no meia da lista, ela ja esta invertida
       first++;
       last--;
-    }else{
+    }
+    else{//lista de tamanhos impares 
       swap(*first,*last);
       first++;
       last--;

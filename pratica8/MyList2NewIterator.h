@@ -137,8 +137,8 @@ private:
 //y = ++x; => y = x+1;
 template<class T>
 MyList2Iterator<T> MyList2Iterator<T>::operator++() {
-	ptr = ptr->next;
-	return *this;
+	ptr = ptr->next; //recebe o proximo
+	return *this; //retorna o prox
 }
 
 template<class T>
@@ -157,9 +157,9 @@ MyList2Iterator<T> MyList2Iterator<T>::operator--() {
 //y = x++; => y = x; x = x+1;
 template<class T>
 MyList2Iterator<T> MyList2Iterator<T>::operator++(int) {
-	MyList2Iterator<T> oldIt= *this;
-	ptr = ptr->next;
-	return oldIt;
+	MyList2Iterator<T> oldIt= *this; //salva o iterator antigo
+	ptr = ptr->next; //passamos para a proxi pos
+	return oldIt; //retornamos o antigo
 }
 
 template<class T>
@@ -241,7 +241,7 @@ MyList2<T> & MyList2<T>::operator=(const MyList2 &other) {
 	int MyList2<T>::size(){
 		int cont = 0;
 		iterator sz = begin();
-		while(sz!=end()){
+		while(sz != end()){
 			sz++;
 			cont++;
 		}
