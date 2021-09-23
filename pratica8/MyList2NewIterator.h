@@ -143,7 +143,8 @@ MyList2Iterator<T> MyList2Iterator<T>::operator++() {
 
 template<class T>
 MyList2Iterator<T> MyList2Iterator<T>::operator--() {
-	if(*this == lista->end()){
+	MyList2Iterator<T> oldIt= *this;
+	if(oldIt == lista->end()){
 		ptr = lista->dataLast;
 	}else{
 		ptr = ptr->prev;
