@@ -28,17 +28,12 @@ public:
 template<class T>
 class MyVec {
 public:
-	//decidimos utilizar o typedef com o objetivo de "abstrair" o conceito de iterador (a utilidade disso sera vista posteriormente)
-	typedef T * iterator; //define um iterador, um tipo utilizado para percorrer uma estrutura de dados e "apontar" para os items armazenados nela
-
-
-
 	template<class T2>
 	friend std::ostream& operator<<(std::ostream &, const MyVec<T2> &);
 
 	//construtores/destrutures/etc
 	MyVec();
-	MyVec(int n, const T&init=T());
+	MyVec(int n, const T& init=T());
 
 	//destrutor
 	~MyVec() { destroy(); };
@@ -52,6 +47,10 @@ public:
 	const T &operator[](int pos) const {return data[pos];}
 	void push_back(const T&);
 	void pop_back() { assert(dataSize!=0); dataSize--; }
+
+	//modifica o numero de elementos no vetor
+	//se newSize > dataSize --> novos elementos terao valor padrao
+	//se newSize <= dataSize --> capacidade do vetor nao sera alterada
 	void resize(int newSize);
 	void insert(const T&,int pos);
 	void clear();
@@ -59,15 +58,6 @@ public:
 	bool empty() const {return size() == 0;};
 	int size() const {return dataSize;};
 
-
-
-	iterator begin() {return data;} //Exercicio: e se tivermos uma lista constante, como itera-la para, por exemplo, imprimir os elementos?
-	iterator end() {return data+dataSize;} //retorna um apontador para um elemento que estaria APOS o final da lista
-
-	//versoes constantes dos 4 metodos acima
-	const iterator begin() const {return data;} //Exercicio: e se tivermos uma lista constante, como itera-la para, por exemplo, imprimir os elementos?
-	const iterator end() const {return data+dataSize;} //retorna um apontador para um elemento que estaria APOS o final da lista
-	
 private:
 	T *data;
 	int dataSize; //quantos elementos ha na lista?
@@ -75,9 +65,28 @@ private:
 
 	void create();
 	void destroy();
-	void resizeCapacity(int newCapacity);
+	void resizeCapacity(int newCapacity); //modifica a capacidade do vetor (nao faz nada se nova capacidade for menor!)
 };
 
+
+//Exercicio: implementar "void resizeCapacity(int newCapacity); //modifica a capacidade do vetor (nao faz nada se nova capacidade for menor!)"
+
+
+
+
+template<class T>
+void MyVec<T>::push_back(const T&elem) {
+	if(size()==dataCapacity) {
+		if(dataCapacity==0)
+			resizeCapacity(1);
+		else
+			resizeCapacity(2*dataCapacity);
+	}
+	data[size()] = elem;
+	dataSize++;
+}
+
+/*
 template<class T>
 void MyVec<T>::push_back(const T&elem) {
 	if(dataSize + 1 >= dataCapacity) { //preciso redimensionar?
@@ -88,11 +97,12 @@ void MyVec<T>::push_back(const T&elem) {
 	}
 	data[dataSize] = elem;
 	dataSize++;
-}
+}*/
+
 
 template<class T>
 void MyVec<T>::resize(int newSize) {
-	if(newSize >= dataCapacity) { //primeiro temos que realocar o vector...
+	if(newSize > dataCapacity) { //primeiro temos que realocar o vector...
 		resizeCapacity(newSize); //para o resize vamos usar o tamanho exato caso seja necessario realocar o vector..
 	}
 	for(int i=dataSize;i<newSize;i++) { //preencha a parte "extra" do vector com valores "em branco"
@@ -100,6 +110,8 @@ void MyVec<T>::resize(int newSize) {
 	}
 	dataSize = newSize;
 }
+
+
 
 //insere o elemento na posicao pos e move os elementos ja presentes no vetor
 // pos pode ser:
@@ -126,13 +138,6 @@ void MyVec<T>::insert(const T&elem,int pos) {
 
 
 template<class T>
-void MyVec<T>::clear() {
-	destroy();
-	create();
-}
-
-
-template<class T>
 void MyVec<T>::resizeCapacity(int newCapacity) {
 	if(newCapacity<=dataCapacity)
 		return; //a principio, nunca vamos reduzir o tamanho do vetor
@@ -146,6 +151,12 @@ void MyVec<T>::resizeCapacity(int newCapacity) {
 	delete []oldData;
 
 	dataCapacity = newCapacity;
+}
+
+template<class T>
+void MyVec<T>::clear() {
+	destroy();
+	create();
 }
 
 template<class T>
