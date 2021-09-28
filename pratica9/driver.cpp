@@ -51,6 +51,7 @@ void etapa2(){
 
 	char c;
 
+
 	while (cin >> c){
 		if(c == '(' || c == '[' || c == '{' ){ //caso vejamos algo que ''abre'' colocamos na pilha
 			pilha.push(c);
@@ -118,7 +119,9 @@ void etapa3() {
 }
 
 //---------------------------------------
-
+//O método que usa pilha visita todos os elementos mais próximos
+//ao último visitado, já o método que usa fila visita todo um caminho até acabar, 
+//caso não ache a saída ele volta e tenta outro caminho
 
 
 

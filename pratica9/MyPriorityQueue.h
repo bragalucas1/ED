@@ -54,7 +54,7 @@ void MyPriorityQueue<T>::moveUp(int pos) {
 
 
 template<class T>
-void MyPriorityQueue<T>::push(const T&elem) {
+void MyPriorityQueue<T>::push(const T&elem){
 	//adicione o elemento no final do heap e use moveUp para restaurar as propriedades de heap
 	heap.push_back(elem);
 	moveUp(heap.size()-1);
