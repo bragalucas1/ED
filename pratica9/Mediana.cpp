@@ -27,7 +27,7 @@ void Mediana::insere(int x){ //log n
         f2.push(-f1.top()); //colocamos o maior elemento de f1, só que negativo em f2, e removes de f1
         f1.pop();//retiramos o maior elemento de f1
     } 
-    else if(f2.size() - f1.size() > 1) {//caso o tam de 2 - 1 for maior que 1
+    else if(f2.size() - f1.size() > 1){//caso o tam de 2 - 1 for maior que 1
         f1.push(-f2.top()); //fazemos o contrario das operações acima
         f2.pop();
     }
