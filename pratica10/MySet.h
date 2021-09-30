@@ -1,3 +1,4 @@
+  
 #ifndef MY_SET_LIST_H
 #define MY_SET_LIST_H
 
@@ -23,25 +24,30 @@ public:
 
 	int size() const;
 	MySet() : size_(0), root(NULL) {}
+	MySet(MySet<T> &);
+	~MySet();
+
+	MySet<T> & operator=(MySet<T> &);
 
 	pair<iterator,bool> insert(const T&elem); //retorna um iterador para o elemento inserido (o valor booleano sera' true se o elemento nao existia no conjunto e falso caso ele ja exista (ou seja, o novo elemento nao foi inserido) ).
 	iterator find(const T&elem); //por simplicidade, nao vamos deixar implementar um find constante...
 
-	iterator end() {return iterator(NULL);}; 
-	iterator begin() ;
+	iterator end() {return iterator(NULL);};
+	iterator begin();
 
 
 	void imprimeBFS() const;
 	void imprimeDFS_pre() const;
 	void imprimeDFS_in() const;
 	void imprimeDFS_pos() const;
+
+	void destroy(Node<T> *);
 private:
 	Node<T> *root;
 	int size_;
 
-
 	//funcoes auxiliares...
-	pair<iterator,bool> insert(const T&elem, Node<T> *&root,Node<T> *parent); 
+	pair<iterator,bool> insert(const T&elem, Node<T> *&root,Node<T> *parent);
 	iterator find(const T&elem, Node<T> *root);
 
 
@@ -128,12 +134,6 @@ MySetIterator<T>  MySetIterator<T>::operator--(int) {
 	return old;
 }
 
-
-
-
-
-
-
 template  <class T>
 typename MySet<T>::iterator MySet<T>::begin() {
 	if(!root) return end();
@@ -142,13 +142,39 @@ typename MySet<T>::iterator MySet<T>::begin() {
 	return iterator(ptr);
 }
 
+template<class T>
+MySet<T>::~MySet() {
+	destroy(root);
+	size_ = 0;
+}
 
+template<class T>
+void MySet<T>::destroy(Node<T> * n) {
+	if (!n) return;
+	destroy(n->left);
+	destroy(n->right);
+	delete n;
+}
 
+template<class T>
+MySet<T>::MySet(MySet<T> & obj) {
+	size_ = 0;
+	root = NULL;
+	*this = obj;
+}
 
+template<class T>
+MySet<T> & MySet<T>::operator=(MySet<T> & obj) {
+	if (this == &obj) return *this;
+	destroy(root);
+	size_ = obj.size();
+	root = NULL;
+	for (iterator i = obj.begin(); i != obj.end(); i++) {
+		insert(*i);
+	}
 
-
-
-
+	return *this;
+}
 
 template  <class T>
 int MySet<T>::size() const {
@@ -209,12 +235,10 @@ void MySet<T>::imprimeBFS() const { //um nivel por vez..
 	MyQueue<Node<T> *> u;
 	if(!root) return;
 	u.push(root);
-
 	int nivel = 0;
 	while(!u.empty()) {
 		q = u;
 		u = MyQueue<Node<T> *>();
-
 		cout <<  "Nivel " << nivel++ << " : ";
 		while(!q.empty()) {
 			Node<T> * p = q.front();
