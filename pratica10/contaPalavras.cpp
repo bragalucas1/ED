@@ -5,31 +5,37 @@
 #include <cstring>
 
 using namespace std;
-
 int main(int argc, char **argv){
-    string new;
+    string s;
     int cont = 0;
     bool auxiliar = false;
 
-    if(strcmp(argv[1], "myvec") == 0){
+    if(strcmp(argv[1], "myvec") == 0){ //tratamos o caso de entrada como myVec
         MyVec<string> v;
-        while(cin >> new){
+        while(cin >> s){
+            auxiliar = false;
             for(int i = 0; i < v.size(); i++){
-                if(v[i] == new){
+                if(v[i] == s){
                     auxiliar = true;
                     break;
                 }
             }   
             if(!auxiliar){
-                v.push_back(new);
-                cont++;
+                v.push_back(s);
             }
-            cout << cont << " " << v.size() << endl;
+            cont++;
+            //cout << cont << " " << v.size() << endl;
         }
+        cout << cont << " " << v.size() << endl;
     }
-    else{
-        
+    else{//caso sobresssalente -- MYSET
+        MySet<string> v;
+        while(cin >> s){
+            v.insert(s);  
+            cont++;
+        }
+    cout << cont << " " << v.size() << endl;
     }
-
+    return 0;
 
 }

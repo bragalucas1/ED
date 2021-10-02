@@ -7,3 +7,7 @@ using namespace std;
 HuffmanTree::HuffManTree(int freqs[256]){
     
 }
+
+void HuffmanTree::createTree(Node *root){
+
+}
