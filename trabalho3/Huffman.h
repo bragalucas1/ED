@@ -2,20 +2,18 @@
 #define HUFFMAN_H
 #include "MyPriorityQueue.h"
 #include "MyVec.h"
-#include "MySet.h"
+//#include "MySet.h"
 #include <iostream>
 using namespace std;
 
-/*template <class T>
+template <class T>
 class Node{
 	public: //classe auxiliar - usaremoMyPriorityQueue
-MyPriorityQueues para criar nosssa árvore
 		Node(const T &elem_) : elem(elem_),left(NULL), right(NULL) {}
 		Node<T> *left, *right;
 		T elem;
 		Node<T> *parent; //agora cada nodo armazena seu pai
-};* Acho que naõ vou precisar devido ao include*/   
-
+};
 //assuma que o peso de uma árvore é a frequência armazenada em sua raiz):
 
 
@@ -23,7 +21,7 @@ template<class T>
 class HuffmanTree{
     private:
     MyPriorityQueue<T> PQ;
-    void createTree(Node<T> *root)
+    //void createTree(Node<T> *root)
     public:
     HuffManTree(int freqs[256]);    
     void comprimir(MyVec<bool> &out, const MyVec<char> &in) const;

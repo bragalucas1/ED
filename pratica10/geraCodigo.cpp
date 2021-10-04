@@ -11,7 +11,7 @@ int main() {
     int cont = 0;
     while (cin >> s) {
         if (map.find(s) == NULL){
-            map.insert(mapake_pair(s, cont));
+            map.insert(make_pair(s, cont));
             cout << s << " " << cont << endl;
             cont++;
         } else {
