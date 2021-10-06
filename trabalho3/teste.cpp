@@ -4,6 +4,7 @@
 #include <cstdio>
 #include "MyVec.h"
 #include "Huffman.h"
+#include "Huffman.cpp"
 using namespace std;
 
 int main() {
@@ -14,7 +15,11 @@ int main() {
 	freqs['D'] = 1;
 	HuffmanTree arvore(freqs);
 
-	MyVec<char> in;
+
+
+
+
+	/*MyVec<char> in;
 	in.push_back('A');
 	in.push_back('B');
 	in.push_back('B');
@@ -33,6 +38,6 @@ int main() {
 	arvore.descomprimir(descomprimido, comprimido);
 	for(int i=0;i<descomprimido.size();i++)
 		cout << descomprimido[i];
-	cout << endl;
+	cout << endl;*/
 	//deveria imprimir: ABBC
 }

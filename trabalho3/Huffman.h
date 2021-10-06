@@ -7,32 +7,25 @@
 
 using namespace std;
 
-/* Nessa classe Nodo modificada, agora armazenamos o caracter do simbolo e sua respectiva frequência. */
-template <class T>
-class Node{ 
-	public: //classe auxiliar - usaremos MyPriorityQueue
-		Node(const T &elemento): elem(elemento),left(NULL), right(NULL), ch(ch), freq(freqs[]){}
-		Node<T> *left, *right;
-		T elem;
-        char ch;
-        int freq;
-		 
-};
+/*Minha classe Nodo que anteriormente ficava aqui, foi passada para a classe MyPriorityQueue, a fim de armazenar as frequencias negatias,
+de modo que ficasse mais fácil a manipulação dos menores resultados*/
+
+
 //assuma que o peso de uma árvore é a frequência armazenada em sua raiz):
 
 
-template<class T>
+
 class HuffmanTree{
     private:
-    Node<T> *root;
-    MyPriorityQueue<T> PQ;  //fila de prioridade que armazenara a arvore criada no construtor
+    Node *root;
+    MyPriorityQueue<Node *> PQ;  //fila de prioridade que armazenara a arvore criada no construtor
     
-    void buildcode(Node<T> *root);
+    void buildcode(Node *root);
     
     public:
     HuffmanTree(int freqs[256]);
     //HuffmanTree();
-    void smallestChild(Node<T> *root,int pos);
+    void smallestChild(Node *root,int pos);
     //void removesmallest();
     void comprimir(MyVec<bool> &out, const MyVec<char> &in) const;
     void descomprimir(MyVec<char> &out, const MyVec<bool> &in) const;
@@ -40,11 +33,11 @@ class HuffmanTree{
     /*Métodos inerentes á classe*/
 
     //Destrutor 
-    ~HuffmanTree();
+    //~HuffmanTree();
     //Construtor de cópia
-    HuffmanTree(const HuffmanTree&);
+    //HuffmanTree(const HuffmanTree&);
     //Operador de atribuição
-    HuffmanTree &operator=(const HuffmanTree &);
+    //HuffmanTree &operator=(const HuffmanTree &);
 
 
 };
