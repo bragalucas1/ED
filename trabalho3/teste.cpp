@@ -6,7 +6,6 @@
 #include "Huffman.h"
 using namespace std;
 
-
 int main() {
 	int freqs[256] = {0};
 	freqs['A'] = 2;

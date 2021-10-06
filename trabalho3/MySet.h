@@ -255,7 +255,7 @@ void MySet<T>::imprimeBFS() const { //um nivel por vez..
 
 template  <class T>
 void MySet<T>::imprimeBFS() const {
-	MyQueue<Node<T> *> q;
+	MyQueue<Node<T> *> q;	
 	if(!root) return;
 	q.push(root);
 

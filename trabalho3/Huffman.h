@@ -3,14 +3,16 @@
 #include "MyPriorityQueue.h"
 #include "MyVecNewIterator.h"
 #include <iostream>
+#include <algorithm> //PAIR esta aqui.
 
 using namespace std;
 
+/* Nessa classe Nodo modificada, agora armazenamos o caracter do simbolo e sua respectiva frequência. */
 template <class T>
-class Node{
+class Node{ 
 	public: //classe auxiliar - usaremos MyPriorityQueue
-		Node(const T &elem_): elem(elem_),left(NULL), right(NULL){}
-		Node<T> *left, *right, *parent; //agora cada nodo armazena seu pai
+		Node(const T &elemento): elem(elemento),left(NULL), right(NULL), ch(ch), freq(freqs[]){}
+		Node<T> *left, *right;
 		T elem;
         char ch;
         int freq;
@@ -22,14 +24,28 @@ class Node{
 template<class T>
 class HuffmanTree{
     private:
-    MyPriorityQueue<T> PQ;      //fila de prioridade que armazenara a arvore criada no construtor
-    void buildcode(Node<T> raiz);
+    Node<T> *root;
+    MyPriorityQueue<T> PQ;  //fila de prioridade que armazenara a arvore criada no construtor
+    
+    void buildcode(Node<T> *root);
     
     public:
-    //HuffmanTree();
     HuffmanTree(int freqs[256]);
+    //HuffmanTree();
+    void smallestChild(Node<T> *root,int pos);
+    //void removesmallest();
     void comprimir(MyVec<bool> &out, const MyVec<char> &in) const;
     void descomprimir(MyVec<char> &out, const MyVec<bool> &in) const;
+    
+    /*Métodos inerentes á classe*/
+
+    //Destrutor 
+    ~HuffmanTree();
+    //Construtor de cópia
+    HuffmanTree(const HuffmanTree&);
+    //Operador de atribuição
+    HuffmanTree &operator=(const HuffmanTree &);
+
 
 };
 

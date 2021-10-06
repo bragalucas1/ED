@@ -23,7 +23,7 @@ public:
 	MyVecException (const std::string &msg0): msg(msg0) { }
 	const std::string & what() const { return msg; }
 };
-
+	
 
 template<class T>
 class MyVec {
