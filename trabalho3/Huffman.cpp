@@ -73,8 +73,9 @@ void HuffmanTree::printTree(Node *root)const {
 
 }
 void HuffmanTree::auxiliar(){
-    //printTree(root);
-    buildTreeCode(root);
+   buildTreeCode(root);
+   printTree(root);
+   decodeTree()
 }
 
 bool HuffmanTree::isLeaf(Node *nodo) const{
@@ -90,29 +91,61 @@ void HuffmanTree::buildTreeCode(Node *root){
     if(root == NULL){ //caso base
         return;
     }
-
     string aux = " ";
-    /*for(int i = 0; i < 256; i++){
-        code[i] = 'x';
+    for(int i = 0; i < 256; i++){
+        code[i] = "x";
     }
+
     buildCodeRecursivity(root, aux);
+    
     for(int i = 0; i < 256; i++){
         if(code[i] != "x"){
             cout << code[i] << endl;
         }
     }
-}
-void HuffmanTree::buildCodeRecursivity(Node *x, string aux){
-    if(isLeaf(x)){
-        code[x->elem] = aux;
+}   
+
+void HuffmanTree::buildCodeRecursivity(Node *root, string aux){
+    if(root == NULL){ //caso base
         return;
     }
-    buildCodeRecursivity(x->left, aux + "0");
-    buildCodeRecursivity(x->right, aux + "1");
 
+    if(isLeaf(root)){
+        code[root->elem] = aux;
+        return;
+    }
+    buildCodeRecursivity(root->left, aux + "0"); //quando é feito um percurso á esquerda temos 0
+    buildCodeRecursivity(root->right, aux + "1");//percuro á direita temos um '1'
 }
 
-
+void HuffmanTree::decodeTree(Node *root, int cursor, string aux){
+    /*Por exemplo, dado um arquivo contendo os bits “1000110”, começamos na raiz e processamos
+    cada bit do arquivo fazendo o seguinte:
+    1: vá para a direita na árvore (a partir da raiz)
+    0: vá para a esquerda. Como chegamos em uma folha (contendo A), grave A na saída e volte a
+    raiz.
+    0: vá para a esquerda a partir da raiz. Como chegamos na folha B, grave B e volte a raiz.
+    0: vá para a esquerda a partir da raiz. Como chegamos na folha B, grave B e volte a raiz.
+    1: vá para a direita a partir da raiz.
+    1: vá para a direita.
+    0: vá para a esquerda. Como chegamos na folha 0, grave C.*/
+    string receiver = " ";
+    if(root = NULL){
+        return;
+    }
+    if(isLeaf(root)){
+        receiver = root->elem;
+        return;
+    }
+    cursor++;
+    if(code[cursor] != "0"){
+        decodeTree(root->right,cursor,aux);
+    }
+    else{
+        decodeTree(root->left,cursor,aux);
+    }
+    
+}
 //void HuffmanTree::comprimir(MyVec<bool> &out, const MyVec<char> &in) const{}
 
 //void HuffmanTree::descomprimir(MyVec<char> &out, const MyVec<bool> &in) const{}

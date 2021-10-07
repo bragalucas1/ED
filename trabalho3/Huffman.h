@@ -30,6 +30,7 @@ class Node{
 
 class HuffmanTree{
     private:
+    int cursor = 0;
     string code[256] = {};
     Node *root; /*nodo responsável basicamente pelo funcionamento do trabalho com um todo - oriundo da ultima arvore restante
     //da fila de prioridade, será argumento de várias funçoes*/
@@ -37,7 +38,8 @@ class HuffmanTree{
     public:
     bool isLeaf(Node *n) const;
     void buildTreeCode(Node *root);
-    void buildCodeRecursivity(Node *x, string aux);
+    void buildCodeRecursivity(Node *root, string aux);
+    void decodeTree(Node *n, int cursor, string aux);
     void auxiliar();
     void printTree(Node *root) const; //função debugger
     HuffmanTree(int freqs[256]);
