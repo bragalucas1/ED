@@ -4,14 +4,6 @@
 #include <iostream>
 using namespace std;
 
-class Node{ 
-	public: //classe auxiliar - usaremos MyPriorityQueue
-		Node(const unsigned char elemento, int freq, Node *left, Node *right): elem(elemento), freq(-freq), left(NULL), right(NULL){}
-		Node *left, *right;
-        unsigned char elem;
-        int freq;
-		 
-};
 
 template<class T>
 class MyPriorityQueue{
