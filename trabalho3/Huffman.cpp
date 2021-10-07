@@ -1,5 +1,4 @@
 #include "Huffman.h"
-#include <algorithm>
 #include <iostream>
 
 using namespace std;
@@ -10,11 +9,13 @@ HuffmanTree::HuffmanTree(int freqs[256]){
     for(int i = 0; i < 256; i++){//criamos uma arvore para cada simbolo, cada nodo terá a frequencia de seu simbolo
         if(freqs[i] > 0){ //verificação a fim de não criamos nodos desnecessarios   
             symbol = i;
-            Node *novo = new Node(symbol,freqs[i], NULL, NULL);
+            Node *novo = new Node(symbol,freqs[i],NULL,NULL);
             PQ.push(pair<int,Node*>(-novo->freq,novo));//colocamos todos os nodos com as respectiva frequencias e simbolos na fila de prioridade
         }  
     } 
     
+    //VERIFICAR QUANDO POSSUI APENAS 1 NODO - FALHA DE SEGMENTAÇÃO 
+
     /* Nessa etapa, enquanto o numero de arvores na FP não for 1, fazemos:
     Pegue (e as remova da fila) as duas árvores a,b de menor “peso” - 
     assuma que o  peso de uma árvore é a frequência armazenada em sua raiz):
@@ -40,12 +41,18 @@ HuffmanTree::HuffmanTree(int freqs[256]){
         Node *b = PQ.top().second;
         //cout << PQ.top()->elem << endl;
         PQ.pop();
-        Node *T = new Node('l', (a->freq + b->freq), a, b);
+        Node *T = new Node('l', (a->freq + b->freq),a,b);
+        //T->left = a;
+        //T->right = b;
         PQ.push(pair<int,Node*>(-T->freq,T));
         //cout << PQ.top()->elem << endl;
     } while (PQ.size()!= 1);
     
-    root = PQ.top().second;
+    root = PQ.top().second; //aqui, recebemos a unica arvore restante na Fila de Prioridades.
+
+
+
+    //FALTA DESTRUTOR DA ÁRVORE -- VAZAMENTO DE MEMÓRIA NO VALGRIND
     //PQ.print();
     //cout << PQ.size() << endl;
     //cout << (PQ.top()->freq)<< endl;
@@ -55,7 +62,22 @@ HuffmanTree::HuffmanTree(int freqs[256]){
     //PQ.pop();
     
 }
-/*bool HuffmanTree::isLeaf(Node *nodo){
+
+void HuffmanTree::printTree(Node *root)const {
+       if(root!=NULL){
+        cout  << root->freq << "  (" << root->elem <<")" << endl;
+            printTree(root->left);
+            printTree(root->right);
+    }
+
+
+}
+void HuffmanTree::auxiliar(){
+    //printTree(root);
+    buildTreeCode(root);
+}
+
+bool HuffmanTree::isLeaf(Node *nodo) const{
     if(nodo->left == NULL && nodo->right == NULL){
         return true;
     }
@@ -64,23 +86,36 @@ HuffmanTree::HuffmanTree(int freqs[256]){
     }
 }
 
-string HuffmanTree::buildCode(Node *root){
-    string code[256] = {};
-    return buildCode(code, root, " ");
-   
+void HuffmanTree::buildTreeCode(Node *root){
+    if(root == NULL){ //caso base
+        return;
+    }
+
+    string aux = " ";
+    /*for(int i = 0; i < 256; i++){
+        code[i] = 'x';
+    }
+    buildCodeRecursivity(root, aux);
+    for(int i = 0; i < 256; i++){
+        if(code[i] != "x"){
+            cout << code[i] << endl;
+        }
+    }
 }
-string HuffmanTree::buildCode(string code[], Node *x, string aux){
+void HuffmanTree::buildCodeRecursivity(Node *x, string aux){
     if(isLeaf(x)){
         code[x->elem] = aux;
         return;
     }
-    buildCode(code, x->left, aux + '0');
-    buildCode(code, x->right, aux + '1');
-}*/
+    buildCodeRecursivity(x->left, aux + "0");
+    buildCodeRecursivity(x->right, aux + "1");
 
-void HuffmanTree::comprimir(MyVec<bool> &out, const MyVec<char> &in) const{}
+}
 
-void HuffmanTree::descomprimir(MyVec<char> &out, const MyVec<bool> &in) const{}
+
+//void HuffmanTree::comprimir(MyVec<bool> &out, const MyVec<char> &in) const{}
+
+//void HuffmanTree::descomprimir(MyVec<char> &out, const MyVec<bool> &in) const{}
 
 
 

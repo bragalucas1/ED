@@ -7,11 +7,11 @@
 
 using namespace std;
 
-/*Minha classe Nodo foi modificada a fim de armazenar as frequencias negativas,
-de modo que ficasse mais fácil a manipulação dos menores resultados.*/
+/*Minha classe Nodo foi modificada a fim de armazenar as frequencias, e usando o pair provido pela lib do C++,
+armazenamos as frequencias como ordem de prioridade e o Nodo como second, dentro de uma fila de prioridade Local no construtor.*/
 class Node{ 
 	public: //classe auxiliar - usaremos MyPriorityQueue de Nodos
-		Node(const unsigned char elemento, int freq, Node *left, Node *right): elem(elemento), freq(freq), left(NULL), right(NULL){}
+		Node(const unsigned char elemento, int freq, Node*left, Node *right): elem(elemento), freq(freq), left(left), right(right){}
 		Node *left, *right;
         unsigned char elem;
         int freq;	 
@@ -30,19 +30,22 @@ class Node{
 
 class HuffmanTree{
     private:
-    Node *root;
-      //fila de prioridade - de Nodos -  que armazenara a arvore criada no construtor
-    bool isLeaf(Node *nodo);
-    string buildCode(Node *root);
-    string buildCode(string st[], Node *x, string aux);
-    
+    string code[256] = {};
+    Node *root; /*nodo responsável basicamente pelo funcionamento do trabalho com um todo - oriundo da ultima arvore restante
+    //da fila de prioridade, será argumento de várias funçoes*/
+
     public:
+    bool isLeaf(Node *n) const;
+    void buildTreeCode(Node *root);
+    void buildCodeRecursivity(Node *x, string aux);
+    void auxiliar();
+    void printTree(Node *root) const; //função debugger
     HuffmanTree(int freqs[256]);
     void Destroy (Node *);
     
-    
-    void comprimir(MyVec<bool> &out, const MyVec<char> &in) const;
-    void descomprimir(MyVec<char> &out, const MyVec<bool> &in) const;
+    //Funções primordiais do código.
+   // void comprimir(MyVec<bool> &out, const MyVec<char> &in) const;
+    //void descomprimir(MyVec<char> &out, const MyVec<bool> &in) const;
     
     /*Métodos inerentes á classe*/
 

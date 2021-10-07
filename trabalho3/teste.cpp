@@ -11,12 +11,13 @@ int main() {
 	int freqs[256] = {0};
 	freqs['A'] = 2;
 	freqs['B'] = 8;
-	freqs['C'] = 1;
-	freqs['D'] = 1;
+	/*freqs['C'] = 1;
+	freqs['D'] = 1;*/
 	HuffmanTree arvore(freqs);
 
-
-
+	arvore.auxiliar();
+	return 0;
+}
 
 
 	/*MyVec<char> in;
@@ -40,4 +41,4 @@ int main() {
 		cout << descomprimido[i];
 	cout << endl;*/
 	//deveria imprimir: ABBC
-}
+
