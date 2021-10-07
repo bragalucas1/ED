@@ -1,15 +1,17 @@
 #include "Huffman.h"
+#include <algorithm>
 #include <iostream>
 
 using namespace std;
 
 HuffmanTree::HuffmanTree(int freqs[256]){
+    MyPriorityQueue<pair<int,Node*>> PQ;
     unsigned char symbol;
     for(int i = 0; i < 256; i++){//criamos uma arvore para cada simbolo, cada nodo terá a frequencia de seu simbolo
         if(freqs[i] > 0){ //verificação a fim de não criamos nodos desnecessarios   
             symbol = i;
             Node *novo = new Node(symbol,freqs[i], NULL, NULL);
-            PQ.push(novo);//colocamos todos os nodos com as respectiva frequencias e simbolos na fila de prioridade
+            PQ.push(pair<int,Node*>(-novo->freq,novo));//colocamos todos os nodos com as respectiva frequencias e simbolos na fila de prioridade
         }  
     } 
     
@@ -19,33 +21,34 @@ HuffmanTree::HuffmanTree(int freqs[256]){
     Crie uma nova árvore T onde a raiz será um nodo cujo peso é a soma do peso de a e de b. 
     O filho esquerdo de T será a e o direito será b.
     Insira T de volta em PQ*/
-    /*cout << PQ.top()->elem<< endl;
+    /*cout << (PQ.top().second->freq)<< endl;
     PQ.pop();
-    cout << PQ.top()->elem<< endl;
+    cout << (PQ.top().second->freq)<< endl;
     PQ.pop();
-    cout << PQ.top()->elem<< endl;
+    cout << (PQ.top().second->freq)<< endl;
     PQ.pop();
-  
-    cout << PQ.top()->elem << endl;*/
-    PQ.print();
-    cout << PQ.size() << endl;
+    cout << (PQ.top().second->freq)<< endl;*/
+    //PQ.print();
+    //cout << PQ.size() << endl;
     do
     {  
         //cout << PQ.top()->elem << endl;
-        Node *a = PQ.top(); 
+        Node *a = PQ.top().second; 
         //cout << PQ.top()->elem << endl;
         PQ.pop();
         //cout << PQ.top()->elem << endl;
-        Node *b = PQ.top();
+        Node *b = PQ.top().second;
         //cout << PQ.top()->elem << endl;
         PQ.pop();
-        Node *T = new Node('l', -(a->freq + b->freq), a, b);
-        PQ.push(T);
+        Node *T = new Node('l', (a->freq + b->freq), a, b);
+        PQ.push(pair<int,Node*>(-T->freq,T));
         //cout << PQ.top()->elem << endl;
     } while (PQ.size()!= 1);
-    PQ.print();
+    
+    root = PQ.top().second;
+    //PQ.print();
     //cout << PQ.size() << endl;
-    //cout << PQ.top()->left->elem << endl;
+    //cout << (PQ.top()->freq)<< endl;
     //cout << PQ.top()->right << endl;
     //A árvore de Huffman será a (única) árvore restante na fila de prioridades.*/
     //cout << -(PQ.top()->freq) << endl;

@@ -11,10 +11,18 @@ using namespace std;
 de modo que ficasse mais fácil a manipulação dos menores resultados.*/
 class Node{ 
 	public: //classe auxiliar - usaremos MyPriorityQueue de Nodos
-		Node(const unsigned char elemento, int freq, Node *left, Node *right): elem(elemento), freq(-freq), left(NULL), right(NULL){}
+		Node(const unsigned char elemento, int freq, Node *left, Node *right): elem(elemento), freq(freq), left(NULL), right(NULL){}
 		Node *left, *right;
         unsigned char elem;
         int freq;	 
+        /*bool operator >(const Node &other)const{ //Overload do operador < a fim de comparar as frequencias negativas
+            if(this->freq > other.freq){            
+                return true;
+            }
+            else{
+                return false;
+            }
+        }*/
 };
 
 //Anotações importantes:
@@ -23,7 +31,7 @@ class Node{
 class HuffmanTree{
     private:
     Node *root;
-    MyPriorityQueue<Node*> PQ;  //fila de prioridade - de Nodos -  que armazenara a arvore criada no construtor
+      //fila de prioridade - de Nodos -  que armazenara a arvore criada no construtor
     bool isLeaf(Node *nodo);
     string buildCode(Node *root);
     string buildCode(string st[], Node *x, string aux);
