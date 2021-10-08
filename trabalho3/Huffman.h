@@ -3,6 +3,7 @@
 #include "MyPriorityQueue.h"
 #include "MyVecNewIterator.h"
 #include <iostream>
+#include <string>
 #include <algorithm> //PAIR esta aqui.
 
 using namespace std;

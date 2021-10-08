@@ -146,7 +146,9 @@ void HuffmanTree::decodeTree(Node *root, int cursor, string aux){
         decodeTree(root->right,cursor,aux);
     }
     else{
-        decodeTree(root->left,cursor,aux);
+        decodeTree(root->left,curso if(root == NULL){ //caso base
+        return;
+    }r,aux);
     }
 }*/
 
