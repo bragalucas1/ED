@@ -72,13 +72,13 @@ void HuffmanTree::printTree(Node *root) const{
 }
 /*Função debugger */
 void HuffmanTree::auxiliar(){
-   buildTreeCode(root);
+   buildTreeCode(root,aux);
    printTree(root);
    //   ecodeTree()
 }
 /*Função responsável por verificar se o Nodo local é uma folha, ou seja, não possui filhos - utilidade
 acentuada nas funçoes de construir o código, e decodificar o mesmo*/
-bool HuffmanTree::isLeaf(Node *nodo) const{
+bool HuffmanTree::leafCheck(Node *nodo) const{
     if(nodo->left == NULL && nodo->right == NULL){
         return true;
     }
@@ -89,75 +89,46 @@ bool HuffmanTree::isLeaf(Node *nodo) const{
 
 /*Função recursiva responsável por criar o código da nossa árvore, percorrendo cada nodo. */
 //Está muito reduntante - MODIFICAR DEPOIS
-void HuffmanTree::buildTreeCode(Node *root){
+/*void HuffmanTree::buildTreeCode(Node *root){
     /*Basta andar na árvore e pré-calcular a codificação de cada símbolo (exemplo acima: o símbolo
     C teria codificação “110”). A seguir, para cada símbolo, grave sua codificação no arquivo de
     saída.
     Observe que considerar que o lado direito vale 1 e o esquerdo vale 0 não é importante (poderia
     ser o contrário). O que importa é que a mesma estratégia usada na compressão será utilizada
-    na descompressão.*/
+    na descompressão.
     buildCodeRecursivity(root,aux);
     
-    /*for(int i = 0; i < 256; i++){
-        if(code[i] != ""){
-            cout << code[i] << endl;
-        }
-    }*/
-}   
+    for(int i = 0; i < 256; i++){
+        code[i] = aux;
+    }
+}*/
 
-void HuffmanTree::buildCodeRecursivity(Node *root, string aux){
+void HuffmanTree::buildTreeCode(Node *root, string aux){
     if(root == NULL){ //caso base
         return;
     }
-    if(isLeaf(root)){
-        if(aux.empty()){
+    if(leafCheck(root)){
+        if(aux.empty()){ //aqui verificamos se a arvore em questão possui apenas um Nodo
             code[root->elem] = "0";
         }
         code[root->elem] = aux;
         return;
     }
-    buildCodeRecursivity(root->left, aux + "0"); //quando é feito um percurso á esquerda temos 0
-    buildCodeRecursivity(root->right, aux + "1");//percuro á direita temos um '1'
+    buildTreeCode(root->left, aux + "0"); //quando é feito um percurso á esquerda temos 0
+    buildTreeCode(root->right, aux + "1");//percuro á direita temos um '1'
+     
+    for(int i = 0; i < 256; i++){
+        code[i] = aux;
+    }
 }
 /**********************************************************************************/
-
-/*Função responsável por fazer o inverso da função acima.
-void HuffmanTree::decodeTree(Node *root, int cursor, string aux){
-    /*Por exemplo, dado um arquivo contendo os bits “1000110”, começamos na raiz e processamos
-    cada bit do arquivo fazendo o seguinte:
-    1: vá para a direita na árvore (a partir da raiz)
-    0: vá para a esquerda. Como chegamos em uma folha (contendo A), grave A na saída e volte a
-    raiz.
-    0: vá para a esquerda a partir da raiz. Como chegamos na folha B, grave B e volte a raiz.
-    0: vá para a esquerda a partir da raiz. Como chegamos na folha B, grave B e volte a raiz.
-    1: vá para a direita a partir da raiz.
-    1: vá para a direita.
-    0: vá para a esquerda. Como chegamos na folha 0, grave C.
-    string receiver = " ";
-    if(root = NULL){
-        return;
-    }
-    if(isLeaf(root)){
-        receiver = root->elem;
-        return;
-    }
-    cursor++;
-    if(code[cursor] != "0"){
-        decodeTree(root->right,cursor,aux);
-    }
-    else{
-        decodeTree(root->left,curso if(root == NULL){ //caso base
-        return;
-    }r,aux);
-    }
-}*/
 
 void HuffmanTree::comprimir(MyVec<bool> &out, const MyVec<char> &in) const{
 /*Essa função deverá ler o vetor de bytes (chars) “in”, comprimi-lo e gravar os bits
 representando o arquivo comprimido em “out” (cada bool de out representará um
 bit , sendo 1 representado por true e 0 por false)*/
-  for(char i = 0; i < in.size(); i++){
-      for(int j = 0; j < 256; j++){
+  for(int i = 0; i < in.size(); i++){
+      for(code[i] = 0; i < 256; i++){
         if(code[i] == "1"){
             out.push_back(1);
         }
@@ -182,14 +153,15 @@ void HuffmanTree::descomprimir(MyVec<char> &out, const MyVec<bool> &in) const{
     0: vá para a esquerda. Como chegamos na folha 0, grave C.*/
     
     Node *auxiliar = root;
+        
     for(int i = 0; i < in.size(); i++){
-        if(i = 1){
+        if(in[i]){
             auxiliar = auxiliar->right;
         }
         else{
             auxiliar = auxiliar->left;
         }
-        if(isLeaf(auxiliar)){
+        if(leafCheck(auxiliar)){
             out.push_back(auxiliar->elem);
             auxiliar = root;
         }

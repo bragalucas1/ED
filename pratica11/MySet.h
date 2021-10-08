@@ -86,6 +86,20 @@ template<class T>
 MySetIterator<T>  MySetIterator<T>::operator++() {
 	//termine a implementacao desta funcao...
 	//(faca isso sem olhar a implementacao do PVANET...)
+	//caso mais simples:
+	if(ptr->right != NULL){
+		ptr = ptr->right;
+		while(ptr->left!=NULL){
+			ptr = ptr->left;
+		}
+	}
+	else{
+		while(ptr->parent!=NULL && ptr == ptr->parent->right){
+			ptr = ptr->parent;
+		}
+		ptr = ptr->parent;
+	}
+	return *this;
 }
 
 //operador de pre-decremento

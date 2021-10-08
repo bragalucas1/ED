@@ -38,10 +38,9 @@ class HuffmanTree{
     //da fila de prioridade, será argumento de várias funçoes*/
 
     public:
-    bool isLeaf(Node *n) const;
-    void buildTreeCode(Node *root) ;
-    void buildCodeRecursivity(Node *root, string aux);
-    //void decodeTree(Node *n, int cursor, string aux);
+    bool leafCheck(Node *n) const;
+    //void buildTreeCode(Node *root) ;
+    void buildTreeCode(Node *root, string aux);
     void auxiliar();
     void printTree(Node *root) const; //função debugger
     HuffmanTree(int freqs[256]);
