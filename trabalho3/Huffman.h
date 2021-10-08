@@ -31,23 +31,24 @@ class Node{
 class HuffmanTree{
     private:
     int cursor = 0;
+    string aux = " ";
     string code[256] = {};
-    Node *root; /*nodo responsável basicamente pelo funcionamento do trabalho com um todo - oriundo da ultima arvore restante
+    Node *root; /*nodo responsável basicamente pelo funcionamento do trabalho como um todo - oriundo da ultima arvore restante
     //da fila de prioridade, será argumento de várias funçoes*/
 
     public:
     bool isLeaf(Node *n) const;
-    void buildTreeCode(Node *root);
+    void buildTreeCode(Node *root) ;
     void buildCodeRecursivity(Node *root, string aux);
-    void decodeTree(Node *n, int cursor, string aux);
+    //void decodeTree(Node *n, int cursor, string aux);
     void auxiliar();
     void printTree(Node *root) const; //função debugger
     HuffmanTree(int freqs[256]);
     void Destroy (Node *);
     
     //Funções primordiais do código.
-   // void comprimir(MyVec<bool> &out, const MyVec<char> &in) const;
-    //void descomprimir(MyVec<char> &out, const MyVec<bool> &in) const;
+    void comprimir(MyVec<bool> &out, const MyVec<char> &in) const;
+    void descomprimir(MyVec<char> &out, const MyVec<bool> &in) const;
     
     /*Métodos inerentes á classe*/
 

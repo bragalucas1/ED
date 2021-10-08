@@ -15,12 +15,11 @@ int main() {
 	freqs['D'] = 1;
 	HuffmanTree arvore(freqs);
 
-	arvore.auxiliar();
-	return 0;
-}
+	//arvore.auxiliar();
+	
 
 
-	/*MyVec<char> in;
+	MyVec<char> in;
 	in.push_back('A');
 	in.push_back('B');
 	in.push_back('B');
@@ -28,17 +27,19 @@ int main() {
 	//A frequencia nao precisa ser necessariamente a mesma dos
 	//dados de entrada (nessa entrada a frequencia de B e'2, nao 8)
 	//O ideal eh que a frequencia seja a mesma! (isso poderia gerar uma compressao)
-
 	MyVec<bool> comprimido;
 	arvore.comprimir(comprimido, in);
-	for(int i=0;i<comprimido.size();i++)
+	for(int i=0;i<comprimido.size();i++){
+		cout << "Oi" << endl;
 		cout << comprimido[i];
+	}
 	cout << endl;
 	//deveria imprimir: 1000110 (supondo que a arvore gerada foi igual a apresentada no roteiro)
 	MyVec<char> descomprimido;
 	arvore.descomprimir(descomprimido, comprimido);
 	for(int i=0;i<descomprimido.size();i++)
 		cout << descomprimido[i];
-	cout << endl;*/
+	cout << endl;
 	//deveria imprimir: ABBC
-
+return 0;
+}
