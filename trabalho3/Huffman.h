@@ -4,6 +4,7 @@
 #include "MyVecNewIterator.h"
 #include <iostream>
 #include <string>
+#include <cstring>
 #include <algorithm> //PAIR esta aqui.
 
 using namespace std;
@@ -33,7 +34,7 @@ class HuffmanTree{
     private:
     int cursor = 0;
     string aux = " ";
-    string code[256] = {};
+    string code[256] = {""};
     Node *root; /*nodo responsável basicamente pelo funcionamento do trabalho como um todo - oriundo da ultima arvore restante
     //da fila de prioridade, será argumento de várias funçoes*/
 
@@ -42,6 +43,7 @@ class HuffmanTree{
     //void buildTreeCode(Node *root) ;
     void buildTreeCode(Node *root, string aux);
     void auxiliar();
+    void printCode();
     void printTree(Node *root) const; //função debugger
     HuffmanTree(int freqs[256]);
     void Destroy (Node *);

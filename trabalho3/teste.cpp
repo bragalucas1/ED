@@ -24,7 +24,6 @@ int main() {
 	in.push_back('B');
 	in.push_back('B');
 	in.push_back('C');
-	cout << in.size() << "to aqui " << "\n";
 	//A frequencia nao precisa ser necessariamente a mesma dos
 	//dados de entrada (nessa entrada a frequencia de B e'2, nao 8)
 	//O ideal eh que a frequencia seja a mesma! (isso poderia gerar uma compressao)

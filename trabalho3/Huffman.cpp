@@ -70,10 +70,18 @@ void HuffmanTree::printTree(Node *root) const{
         printTree(root->right);
     }
 }
+void HuffmanTree::printCode(){
+    for(int i = 0; i < 256; i++){
+       if(code[i] !=  ""){
+           cout << code[i] << endl;
+       }
+    }
+}
 /*Função debugger */
 void HuffmanTree::auxiliar(){
    buildTreeCode(root,aux);
-   printTree(root);
+   //printCode();
+   //printTree(root);
    //   ecodeTree()
 }
 /*Função responsável por verificar se o Nodo local é uma folha, ou seja, não possui filhos - utilidade
@@ -110,11 +118,14 @@ void HuffmanTree::buildTreeCode(Node *root, string aux){
         }
         code[root->elem] = aux;
         cout << root->elem << " = " << code[root->elem] << endl;
+        /*for(int i = 0; i < 256; i++){
+            code[i] = aux;
+        }*/
         return;
     }
-    buildTreeCode(root->left, aux + "0"); //quando é feito um percurso á esquerda temos 0
-    buildTreeCode(root->right, aux + "1");//percuro á direita temos um '1'
     
+    buildTreeCode(root->left, aux + "0"); //quando é feito um percurso á esquerda temos 0
+    buildTreeCode(root->right, aux + "1");//percuro á direita temos um '1'   
 }
 /**********************************************************************************/
 /*Look after THIS*/
@@ -124,35 +135,24 @@ representando o arquivo comprimido em “out” (cada bool de out representará 
 bit , sendo 1 representado por true e 0 por false)*/
  // cout << root->elem << " = " << code[root->elem] << endl;
   //cout << "imhere";
-  Node *auxiliar1 = root;
+   //string toCompress[in.size()] = {};
+   //buildTreeCode(root,aux);
+    //buildTreeCode(root,aux);
   for(int i = 0; i < in.size(); i++){
-        cout << "this:" <<  code[in[i]] << endl;
-        //cout << "Nowhere";
-        if(true){
-            cout << "--------------------------------------------" << endl;
-            auxiliar1 = auxiliar1->right;
-            cout << auxiliar1->elem << " = " << code[auxiliar1->elem] << endl;
-            cout << "--------------------------------------------" << endl;
+        for(int j = 0; j < code[in[i]].length(); j++){
+        //cout << "Códigos: " << code[in[i]]; 
+        //cout << endl;
+        if(code[in[i]][j] == '1'){
+            //cout << "entrei aqui" << endl;
+            //cout << code[in[i]];
+            out.push_back(true);
         }
-        else{
-            cout << "--------------------------------------------" << endl;
-            auxiliar1= auxiliar1->left;
-            cout << auxiliar1->elem << " = " << code[auxiliar1->elem] << endl;
-            cout << "--------------------------------------------" << endl;
+        else if(code[in[i]][j] == '0')
+            //cout << " entrei no else " << endl;
+            out.push_back(false);
         }
-        if(leafCheck(auxiliar1)){
-            cout << "--------------------------------------------" << endl;
-            string bit = code[auxiliar1->elem];
-            cout << auxiliar1->elem << " = " << code[auxiliar1->elem] << endl;
-            //cout << bit << endl;
-            //out.push_back(bit);
-            auxiliar1 = root;
-            cout << "--------------------------------------------" << endl;
-        }
-      }
-
+    }
 }
-
 
 void HuffmanTree::descomprimir(MyVec<char> &out, const MyVec<bool> &in) const{
 /*Por exemplo, dado um arquivo contendo os bits “1000110”, começamos na raiz e processamos
