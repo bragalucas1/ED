@@ -10,7 +10,20 @@ public:
 	const string &getNome() const {return nome;}
 	int getMatricula() const {return matricula;}
 
-
+	bool operator <(const Aluno &other)const{
+        if (nome==other.nome){
+            return matricula>other.matricula;
+        }
+        else 
+            return nome>other.nome;
+		}
+	bool operator >(const Aluno &other)const{
+        if (nome==other.nome){
+            return matricula<other.matricula;
+        }
+        else 
+            return nome<other.nome;
+	}
 private:
 	string nome;
 	int matricula;

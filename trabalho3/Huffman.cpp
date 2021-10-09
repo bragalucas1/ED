@@ -65,9 +65,9 @@ HuffmanTree::HuffmanTree(int freqs[256]){
 /*Função que imprime a árvore de Huffman. */
 void HuffmanTree::printTree(Node *root) const{
        if(root!=NULL){
-        cout  << root->freq << "[" << root->elem <<"]" << endl;
-            printTree(root->left);
-            printTree(root->right);
+        cout  << root->freq << "[" << root->elem <<"]" <<  endl;
+        printTree(root->left);
+        printTree(root->right);
     }
 }
 /*Função debugger */
@@ -87,7 +87,7 @@ bool HuffmanTree::leafCheck(Node *nodo) const{
     }
 }
 
-/*Função recursiva responsável por criar o código da nossa árvore, percorrendo cada nodo. */
+//Função recursiva responsável por criar o código da nossa árvore, percorrendo cada nodo. 
 //Está muito reduntante - MODIFICAR DEPOIS
 /*void HuffmanTree::buildTreeCode(Node *root){
     /*Basta andar na árvore e pré-calcular a codificação de cada símbolo (exemplo acima: o símbolo
@@ -96,47 +96,61 @@ bool HuffmanTree::leafCheck(Node *nodo) const{
     Observe que considerar que o lado direito vale 1 e o esquerdo vale 0 não é importante (poderia
     ser o contrário). O que importa é que a mesma estratégia usada na compressão será utilizada
     na descompressão.
-    buildCodeRecursivity(root,aux);
-    
-    for(int i = 0; i < 256; i++){
-        code[i] = aux;
-    }
-}*/
+    buildTreeCode2(root,aux);
+}   */
 
-void HuffmanTree::buildTreeCode(Node *root, string aux){
+void HuffmanTree::buildTreeCode(Node *root, string aux){   
     if(root == NULL){ //caso base
         return;
     }
+    //cout << aux << " aqui " << endl;
     if(leafCheck(root)){
         if(aux.empty()){ //aqui verificamos se a arvore em questão possui apenas um Nodo
             code[root->elem] = "0";
         }
         code[root->elem] = aux;
+        cout << root->elem << " = " << code[root->elem] << endl;
         return;
     }
     buildTreeCode(root->left, aux + "0"); //quando é feito um percurso á esquerda temos 0
     buildTreeCode(root->right, aux + "1");//percuro á direita temos um '1'
-     
-    for(int i = 0; i < 256; i++){
-        code[i] = aux;
-    }
+    
 }
 /**********************************************************************************/
-
+/*Look after THIS*/
 void HuffmanTree::comprimir(MyVec<bool> &out, const MyVec<char> &in) const{
 /*Essa função deverá ler o vetor de bytes (chars) “in”, comprimi-lo e gravar os bits
 representando o arquivo comprimido em “out” (cada bool de out representará um
 bit , sendo 1 representado por true e 0 por false)*/
+ // cout << root->elem << " = " << code[root->elem] << endl;
+  //cout << "imhere";
+  Node *auxiliar1 = root;
   for(int i = 0; i < in.size(); i++){
-      for(code[i] = 0; i < 256; i++){
-        if(code[i] == "1"){
-            out.push_back(1);
+        cout << "this:" <<  code[in[i]] << endl;
+        //cout << "Nowhere";
+        if(true){
+            cout << "--------------------------------------------" << endl;
+            auxiliar1 = auxiliar1->right;
+            cout << auxiliar1->elem << " = " << code[auxiliar1->elem] << endl;
+            cout << "--------------------------------------------" << endl;
         }
-        else if(code[i] == "0"){
-            out.push_back(0);
+        else{
+            cout << "--------------------------------------------" << endl;
+            auxiliar1= auxiliar1->left;
+            cout << auxiliar1->elem << " = " << code[auxiliar1->elem] << endl;
+            cout << "--------------------------------------------" << endl;
+        }
+        if(leafCheck(auxiliar1)){
+            cout << "--------------------------------------------" << endl;
+            string bit = code[auxiliar1->elem];
+            cout << auxiliar1->elem << " = " << code[auxiliar1->elem] << endl;
+            //cout << bit << endl;
+            //out.push_back(bit);
+            auxiliar1 = root;
+            cout << "--------------------------------------------" << endl;
         }
       }
-  }
+
 }
 
 
@@ -152,18 +166,18 @@ void HuffmanTree::descomprimir(MyVec<char> &out, const MyVec<bool> &in) const{
     1: vá para a direita.
     0: vá para a esquerda. Como chegamos na folha 0, grave C.*/
     
-    Node *auxiliar = root;
+    Node *auxiliar2 = root;
         
     for(int i = 0; i < in.size(); i++){
         if(in[i]){
-            auxiliar = auxiliar->right;
+            auxiliar2 = auxiliar2->right;
         }
         else{
-            auxiliar = auxiliar->left;
+            auxiliar2 = auxiliar2->left;
         }
-        if(leafCheck(auxiliar)){
-            out.push_back(auxiliar->elem);
-            auxiliar = root;
+        if(leafCheck(auxiliar2)){
+            out.push_back(auxiliar2->elem);
+            auxiliar2 = root;
         }
     }
 }
