@@ -86,8 +86,8 @@ void HuffmanTree::printCode(){
 /*Função debugger */
 void HuffmanTree::auxiliar(){
    //buildTreeCode(root,aux);
-   printCode();
-   printTree(root);
+   //printCode();
+   //printTree(root);
    //   ecodeTree()
 }
 /*Função responsável por verificar se o Nodo local é uma folha, ou seja, não possui filhos - utilidade
@@ -123,7 +123,7 @@ void HuffmanTree::buildTreeCode(Node *root, string aux){
             code[root->elem] = "0";
         }
         code[root->elem] = aux;
-        cout << root->elem << " = " << code[root->elem] << endl;
+        //cout << root->elem << " = " << code[root->elem] << endl;
         /*for(int i = 0; i < 256; i++){
             code[i] = aux;
         }*/
@@ -139,8 +139,6 @@ void HuffmanTree::comprimir(MyVec<bool> &out, const MyVec<char> &in) const{
 /*Essa função deverá ler o vetor de bytes (chars) “in”, comprimi-lo e gravar os bits
 representando o arquivo comprimido em “out” (cada bool de out representará um
 bit , sendo 1 representado por true e 0 por false)*/
-  cout << "Size of in: " << in.size() << endl;
-  cout << "Size of out: " <<  out.size() << endl;
   for(int i = 0; i < in.size(); i++){
         unsigned char k = in[i];
         const string &caracterCode = code[k];

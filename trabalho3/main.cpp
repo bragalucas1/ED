@@ -26,12 +26,12 @@ int main(int argc, char **argv){
 
         MyVec<bool> comprimido;
         MyVec<char> in;
+        
         while(getline(innerfile,line1)){
             for(int i = 0; i < line1.size(); i++){
                 unsigned char ch = line1[i];
-                if(line1[i] == ch){
-                    freqs[ch]++;
-                }
+                freqs[ch]++;
+                in.push_back(ch);
             }
         }
         /*for(int i = 0; i < 256; i++){
@@ -40,13 +40,21 @@ int main(int argc, char **argv){
         }*/
        
         HuffmanTree arvore(freqs);
-        arvore.auxiliar();
+        //arvore.auxiliar();
         arvore.comprimir(comprimido,in);
+        cout << "Size of in: " << in.size() << endl;
+        cout << "Size of out: " << comprimido.size() << endl;
         cout << "File compression suceed!" << endl;
         for(int i=0;i< comprimido.size();i++){
 		    cout << comprimido[i];
-	    }
-
+        }
+        cout << endl;
+        MyVec<char> novo;
+        arvore.descomprimir(novo,comprimido);
+        for(int i=0;i<novo.size();i++){
+		cout << novo[i];
+        }
+	    cout << endl;
 	    //cout << endl;
         
     }

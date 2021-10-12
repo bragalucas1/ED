@@ -11,9 +11,8 @@ int main(int argc, char **argv){
     while(getline(compressfile,line1)){
         for(int i = 0; i < line1.size(); i++){
             unsigned char ch = line1[i];
-                if(line1[i] == ch){
-                    freqs[ch]++;
-                }
+            freqs[ch]++;
+        
         }
     }
     
