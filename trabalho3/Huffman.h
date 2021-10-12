@@ -19,7 +19,7 @@ class Node{
         int freq;	 
         /*bool operator >(const Node &other)const{ //Overload do operador < a fim de comparar as frequencias negativas
             if(this->freq > other.freq){            
-                return true;
+                return true;    
             }
             else{
                 return false;
@@ -55,9 +55,9 @@ class HuffmanTree{
     /*Métodos inerentes á classe*/
 
     //Destrutor 
-    //~HuffmanTree();
+    ~HuffmanTree();
     //Construtor de cópia
-    //HuffmanTree(const HuffmanTree&);
+    HuffmanTree(const HuffmanTree &other);
     //Operador de atribuição
     //HuffmanTree &operator=(const HuffmanTree &);
 

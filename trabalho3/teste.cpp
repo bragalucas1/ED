@@ -15,7 +15,7 @@ int main() {
 	freqs['D'] = 1;
 	HuffmanTree arvore(freqs);
 
-	arvore.auxiliar();
+	//arvore.auxiliar();
 	
 
 

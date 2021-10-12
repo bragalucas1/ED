@@ -3,7 +3,11 @@
 
 using namespace std;
 
+/*Construtor padrão que recebe o vetor de frequências preenchido da main, cria a árvore de Huffman que será usada em 
+todo desenvolvimento do trabalho. */
 HuffmanTree::HuffmanTree(int freqs[256]){
+    /*Aqui, usamos uma fila de prioridade que recebe a frequencia e o Nodo - a implementação foi pensada armazenando as 
+    menores frequências de modo que fique mais fácil para criarmos as subárvores.*/
     MyPriorityQueue<pair<int,Node*>> PQ;
     unsigned char symbol;
     for(int i = 0; i < 256; i++){//criamos uma arvore para cada simbolo, cada nodo terá a frequencia de seu simbolo
@@ -31,6 +35,8 @@ HuffmanTree::HuffmanTree(int freqs[256]){
     cout << (PQ.top().second->freq)<< endl;*/
     //PQ.print();
     //cout << PQ.size() << endl;
+    
+    /*Realizamos o bloco de comandos a baixo enquanto não existir uma única arvore(HuffmanTree) na fila de prioridades.*/
     do
     {  
         //cout << PQ.top()->elem << endl;
@@ -50,7 +56,7 @@ HuffmanTree::HuffmanTree(int freqs[256]){
     
     root = PQ.top().second; //aqui, recebemos a unica arvore restante na Fila de Prioridades.
 
-
+    buildTreeCode(root,aux);//construimos o código em cima da arvore resultante.
 
     //FALTA DESTRUTOR DA ÁRVORE -- VAZAMENTO DE MEMÓRIA NO VALGRIND
     //PQ.print();
@@ -79,9 +85,9 @@ void HuffmanTree::printCode(){
 }
 /*Função debugger */
 void HuffmanTree::auxiliar(){
-   buildTreeCode(root,aux);
-   //printCode();
-   //printTree(root);
+   //buildTreeCode(root,aux);
+   printCode();
+   printTree(root);
    //   ecodeTree()
 }
 /*Função responsável por verificar se o Nodo local é uma folha, ou seja, não possui filhos - utilidade
@@ -133,26 +139,22 @@ void HuffmanTree::comprimir(MyVec<bool> &out, const MyVec<char> &in) const{
 /*Essa função deverá ler o vetor de bytes (chars) “in”, comprimi-lo e gravar os bits
 representando o arquivo comprimido em “out” (cada bool de out representará um
 bit , sendo 1 representado por true e 0 por false)*/
- // cout << root->elem << " = " << code[root->elem] << endl;
-  //cout << "imhere";
-   //string toCompress[in.size()] = {};
-   //buildTreeCode(root,aux);
-    //buildTreeCode(root,aux);
+  cout << "Size of in: " << in.size() << endl;
+  cout << "Size of out: " <<  out.size() << endl;
   for(int i = 0; i < in.size(); i++){
-        for(int j = 0; j < code[in[i]].length(); j++){
-        //cout << "Códigos: " << code[in[i]]; 
-        //cout << endl;
-        if(code[in[i]][j] == '1'){
-            //cout << "entrei aqui" << endl;
-            //cout << code[in[i]];
-            out.push_back(true);
-        }
-        else if(code[in[i]][j] == '0')
-            //cout << " entrei no else " << endl;
-            out.push_back(false);
+        unsigned char k = in[i];
+        const string &caracterCode = code[k];
+        for(int j = 0; j < caracterCode.length(); j++){
+            if(caracterCode[j] == '1'){
+                out.push_back(true);
+            }
+            else if(caracterCode[j]  == '0'){
+                out.push_back(false);
+            }
         }
     }
 }
+
 
 void HuffmanTree::descomprimir(MyVec<char> &out, const MyVec<bool> &in) const{
 /*Por exemplo, dado um arquivo contendo os bits “1000110”, começamos na raiz e processamos
@@ -166,7 +168,8 @@ void HuffmanTree::descomprimir(MyVec<char> &out, const MyVec<bool> &in) const{
     1: vá para a direita.
     0: vá para a esquerda. Como chegamos na folha 0, grave C.*/
     
-    Node *auxiliar2 = root;
+    Node *auxiliar2 = root; //aqui criamso esse Nodo auxiliar que recebe a raiz de onde começaremos o processamento -
+    //porém, ao gravarmos o valor de uma folha, devemos retornar a raiz - esse nodo receberá essa inrormação.
         
     for(int i = 0; i < in.size(); i++){
         if(in[i]){
@@ -181,8 +184,12 @@ void HuffmanTree::descomprimir(MyVec<char> &out, const MyVec<bool> &in) const{
         }
     }
 }
+HuffmanTree::HuffmanTree(const HuffmanTree &other){
+    root = NULL;
 
-/*HuffmanTree::~HuffmanTree(){
+    *this = other;
+}
+HuffmanTree::~HuffmanTree(){
     Destroy(root);
 }
 
@@ -193,6 +200,7 @@ void HuffmanTree::Destroy(Node *n){
     Destroy(n->left);
     Destroy(n->right);
     delete n;
-    //delete []root;
-}*/
+}
+
+
     
