@@ -8,13 +8,7 @@ int main(int argc, char **argv){
     string line1 = "";    //calculamos a frequencia aquu, e passamos para o construtor da arvore
     ifstream compressfile(argv[1]);
     cout << "aqui" << endl;
-    while(getline(compressfile,line1)){
-        for(int i = 0; i < line1.size(); i++){
-            unsigned char ch = line1[i];
-            freqs[ch]++;
-        
-        }
-    }
+    compressfile.read()
     
     
     for(int i = 0; i < 256; i++){

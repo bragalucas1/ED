@@ -18,6 +18,7 @@ HuffmanTree::HuffmanTree(int freqs[256]){
         }  
     } 
     
+  
     //VERIFICAR QUANDO POSSUI APENAS 1 NODO - FALHA DE SEGMENTAÇÃO 
 
     /* Nessa etapa, enquanto o numero de arvores na FP não for 1, fazemos:
@@ -35,10 +36,9 @@ HuffmanTree::HuffmanTree(int freqs[256]){
     cout << (PQ.top().second->freq)<< endl;*/
     //PQ.print();
     //cout << PQ.size() << endl;
-    
+    //cout << "PQ tamanho: " << PQ.size() << endl;
     /*Realizamos o bloco de comandos a baixo enquanto não existir uma única arvore(HuffmanTree) na fila de prioridades.*/
-    do
-    {  
+    while (PQ.size()!= 1){
         //cout << PQ.top()->elem << endl;
         Node *a = PQ.top().second; 
         //cout << PQ.top()->elem << endl;
@@ -52,11 +52,12 @@ HuffmanTree::HuffmanTree(int freqs[256]){
         //T->right = b;
         PQ.push(pair<int,Node*>(-T->freq,T));
         //cout << PQ.top()->elem << endl;
-    }while (PQ.size()!= 1);
+    }
     
     root = PQ.top().second; //aqui, recebemos a unica arvore restante na Fila de Prioridades.
 
     buildTreeCode(root,aux);//construimos o código em cima da arvore resultante.
+    
 
     //FALTA DESTRUTOR DA ÁRVORE -- VAZAMENTO DE MEMÓRIA NO VALGRIND
     //PQ.print();
@@ -85,8 +86,7 @@ void HuffmanTree::printCode(){
 }
 /*Função debugger */
 void HuffmanTree::auxiliar(){
-   //buildTreeCode(root,aux);
-   //printCode();
+   //buildTreeCode(root,aux);//Abertura dos arquivos responsáveis pelas operações.
    //printTree(root);
    //   ecodeTree()
 }

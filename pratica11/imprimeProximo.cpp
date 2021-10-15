@@ -13,7 +13,7 @@ int main(){
          else if(c == 'S'){
             MySet<long long int>::iterator it = bd.find(n);
 
-            if(it == bd.end()){ //nao tem numero mairo
+            if(it == bd.end()){ //nao possui numero maior
                 cout << "FALHA" << endl;
                 continue;
             }
