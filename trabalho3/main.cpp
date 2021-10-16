@@ -70,26 +70,17 @@ int main(int argc, char **argv){
 
         for(int i = 0; i < out.size();i++){
             if(out[i]){
-                binary = binary | (1 << j);
-                //cout << int(binary) << " ";
-
+                binary = binary | (out[i] << j);
+                j++;  
             }   
-            j++;
-            if(j == 8){
+            //j++;    
+            if(i % 8 == 0){
                 outfile.write(reinterpret_cast<char*>(&binary),sizeof(unsigned char)); 
                 j = 0;
                 binary = 0;
            }   
             //cout << out[i];
         }
-        /*MyVec<char> descomprimido;
-	    arvore.descomprimir(descomprimido, out);
-	    for(int i=0;i<descomprimido.size();i++)
-		cout << descomprimido[i];
-	    cout << endl;*/ 
-        
-      
-        
         
     }
 
@@ -97,6 +88,7 @@ int main(int argc, char **argv){
         
         MyVec<bool> in;
         MyVec<char> out;
+
         int tamanhovec = 0;
         
         
@@ -124,37 +116,27 @@ int main(int argc, char **argv){
         MyVec<char> vec;
         char aux;
         int cont = 0;
-        //innerfile.seekg(sizeof(int)*257, innerfile.beg);
-        //cout << "aqui" << endl;
         while(innerfile.read(&aux,1)){
-            /*if(innerfile.eof()){ //ŧratamento para quando o arquivo acabar - estava retornando o ultimo caracter duplicado  
-                break;
-            }*/
             vec.push_back(aux);
         }
 
         //cout << "Vec em 0: " << vec[0] << endl;
         int k = 0, j = 0; 
-        //cout << "Tamanho Vec: " << tamanhovec << endl;
-        for(int i = 0; i < tamanhovec; i++){
-            //cout << toBinary << " ";
-            in.push_back(vec[j] & (1 << k));
+        for(int i = 0; i < tamanhovec; i++){    
+            in.push_back(vec[i] & (1 << k));
             k++;
-            // j++;
-            
-            if(k == 8){
+            if(i % 8 == 0){
+                i++;
                 k = 0;
-                j = 0;
-               
             }
         }
         
-        //for(int i = 0; i < out.size(); i++) cout << out[i] << " ";
+        for(int i = 0; i < out.size(); i++) cout << out[i] << " ";
         arvore.descomprimir(out,in);
-        for(int i = 0; i < out.size(); i++){
+        /*for(int i = 0; i < out.size(); i++){
             outfile << out[i];
-        }
-        //outfile << out;
+        }*/
+        outfile << out;
         //outfile.write(reinterpret_cast<char *>(&out),sizeof(unsigned char)*out.size());
     
     }
