@@ -55,7 +55,6 @@ HuffmanTree::HuffmanTree(int freqs[256]){
     }
     
     root = PQ.top().second; //aqui, recebemos a unica arvore restante na Fila de Prioridades.
-
     buildTreeCode(root,aux);//construimos o código em cima da arvore resultante.
     
 
@@ -79,8 +78,9 @@ void HuffmanTree::printTree(Node *root) const{
 }
 void HuffmanTree::printCode(){
     for(int i = 0; i < 256; i++){
+       unsigned char c = i;
        if(code[i] !=  ""){
-           cout << code[i] << endl;
+           cout << c << ":" << code[i] << endl;
        }
     }
 }
@@ -119,8 +119,10 @@ void HuffmanTree::buildTreeCode(Node *root, string aux){
     }
     //cout << aux << " aqui " << endl;
     if(leafCheck(root)){
-        if(aux.empty()){ //aqui verificamos se a arvore em questão possui apenas um Nodo
+        if(aux == " "){ //aqui verificamos se a arvore em questão possui apenas um Nodo
+            //cout << "aqui" << endl;
             code[root->elem] = "0";
+            return;
         }
         code[root->elem] = aux;
         //cout << root->elem << " = " << code[root->elem] << endl;
@@ -134,9 +136,9 @@ void HuffmanTree::buildTreeCode(Node *root, string aux){
     buildTreeCode(root->right, aux + "1");//percuro á direita temos um '1'   
 }
 /**********************************************************************************/
-/*Look after THIS*/
+
 void HuffmanTree::comprimir(MyVec<bool> &out, const MyVec<char> &in) const{
-/*Essa função deverá ler o vetor de bytes (chars) “in”, comprimi-lo e gravar os bits
+/*Essa função deverá le r o vetor de bytes (chars) “in”, comprimi-lo e gravar os bits
 representando o arquivo comprimido em “out” (cada bool de out representará um
 bit , sendo 1 representado por true e 0 por false)*/
   for(int i = 0; i < in.size(); i++){
@@ -166,21 +168,25 @@ void HuffmanTree::descomprimir(MyVec<char> &out, const MyVec<bool> &in) const{
     1: vá para a direita.
     0: vá para a esquerda. Como chegamos na folha 0, grave C.*/
     
-    Node *auxiliar2 = root; //aqui criamso esse Nodo auxiliar que recebe a raiz de onde começaremos o processamento -
+    Node *auxiliar2 = root; //aqui criamos esse Nodo auxiliar que recebe a raiz de onde começaremos o processamento -
     //porém, ao gravarmos o valor de uma folha, devemos retornar a raiz - esse nodo receberá essa inrormação.
-        
+    
     for(int i = 0; i < in.size(); i++){
         if(in[i]){
             auxiliar2 = auxiliar2->right;
         }
         else{
+            if(leafCheck(auxiliar2)){
+                out.push_back(auxiliar2->elem);
+                auxiliar2 = root;
+            }
             auxiliar2 = auxiliar2->left;
         }
         if(leafCheck(auxiliar2)){
             out.push_back(auxiliar2->elem);
             auxiliar2 = root;
         }
-    }
+    }   
 }
 HuffmanTree::HuffmanTree(const HuffmanTree &other){
     root = NULL;

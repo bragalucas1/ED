@@ -1,0 +1,28 @@
+DESCOM:
+int k = 0, j = 0; 
+        for(int i = 0; i < tamanhovec; i++){    
+            in.push_back(vec[i] & (1 << k));
+            k++;
+            if(k == 7){
+                k = 0;
+            }
+        }
+
+
+        COMPRESS:
+         int vectorsize = out.size();
+        int j = 0;
+        unsigned char binary = 0;
+        for(int i = 0; i < out.size();i++){
+            if(out[i]){
+                binary = binary | (out[i] << j);
+                j++;  
+            }   
+            //j++;    
+            if(j == 7){
+                outfile.write(reinterpret_cast<char*>(&binary),sizeof(unsigned char)); 
+                j = 0;
+                binary = 0;
+           }   
+            //cout << out[i];
+        }

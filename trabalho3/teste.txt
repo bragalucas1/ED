@@ -1,3 +1,0 @@
-Size: 5
-Capacity: 8
-L u u u u 
