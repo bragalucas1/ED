@@ -14,7 +14,7 @@ int main() {
             map.insert(make_pair(s, cont));
             cout << s << " " << cont << endl;
             cont++;
-        } else {
+        } else{
             cout << s << " " << map[s] << endl;
         }
     }

@@ -4,25 +4,26 @@
 using namespace std;
 
 
-class Aluno {
+class Aluno{
 public: 
 	Aluno(const string &nome_, int matricula_): nome(nome_), matricula(matricula_) {}
 	const string &getNome() const {return nome;}
 	int getMatricula() const {return matricula;}
 
 	bool operator <(const Aluno &other)const{
-        if (nome==other.nome){
-            return matricula>other.matricula;
+        if (nome == other.nome){
+            return matricula > other.matricula;
         }
         else 
-            return nome>other.nome;
+            return nome > other.nome;
 		}
+	
 	bool operator >(const Aluno &other)const{
-        if (nome==other.nome){
-            return matricula<other.matricula;
+        if (nome == other.nome){
+            return matricula < other.matricula;
         }
         else 
-            return nome<other.nome;
+            return nome < other.nome;
 	}
 private:
 	string nome;
@@ -45,7 +46,7 @@ int main() {
 	MySet<Aluno> s;
 	insere(s,Aluno("Salles",123));
 	insere(s,Aluno("Abc da Silva",3));
-	insere(s,Aluno("Joao",1));
+	insere(s,Aluno("Joao",1));	
 	insere(s,Aluno("Maria",2));
 	insere(s,Aluno("Capivara",1234));
 

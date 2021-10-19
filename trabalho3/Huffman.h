@@ -17,49 +17,70 @@ class Node{
 		Node *left, *right;
         unsigned char elem;
         int freq;	 
-        /*bool operator >(const Node &other)const{ //Overload do operador < a fim de comparar as frequencias negativas
-            if(this->freq > other.freq){            
-                return true;    
-            }
-            else{
-                return false;
-            }
-        }*/
 };
 
-//Anotações importantes:
-//assuma que o peso de uma árvore é a frequência armazenada em sua raiz):
+/*Struct que funciona como a função pair do c++ = aqui armazenamos um ponteiro pra Nodo, que compara as caracteristicas inerentes desse.
+O acesso feito no construtor se dá de forma equivalente, porém não armazeno agora um inteiro como usava antes, visto que é um atributo
+de Nodo, que pode ser facilmente acessado, visto que tudo é publico.
+Exemplo de comparação:
+Com struct: Node *T = new Node(' ', (a.node->freq + b.node->freq),a.node,b.node);
+Com pair: Node *T = new Node(' ', (a->freq + b->freq),a,b); */
+struct compairFreqs{
+   Node *node; //aqui recebemos os atributo da classe Nodo, para podermos utiliza-los a fim de comparação - primordialmente as
+   //frequencias
+   compairFreqs(){
+       node = NULL;
+    }
+   compairFreqs(Node *curr){
+       node = curr;
+   }
+    
+   bool operator>(const compairFreqs &other)const{ 
+        //Overload do operador 
+        /*Implementei o operador de modo que ele seja chamado como '>', porém 
+        ele compara a menor frequencia.*/
+        if(this->node->freq < other.node->freq){  
+            return true;    
+        }
+        else{
+            return false;
+        }
+    }
+     /*Caso haja empate de frequências, isso não gera problemas visto que será tratado de forma equivalente nos metodos de compressão e 
+    descompressão.*/
+};
+
 
 class HuffmanTree{
     private:
-    int cursor = 0;
-    string aux = " ";
-    string code[256] = {""};
-    Node *root; /*nodo responsável basicamente pelo funcionamento do trabalho como um todo - oriundo da ultima arvore restante
+    /*nodo responsável basicamente pelo funcionamento do trabalho como um todo - oriundo da ultima arvore restante
     //da fila de prioridade, será argumento de várias funçoes*/
-
+    Node *root; 
+    string aux = " ";
+    string code[256] = {""}; //vetor automático que funcionará como a tabela de códigos da árvore
+    void buildTreeCode(Node *root, string aux); //função que cria o código da arvore, a partir da raiz
+    void Destroy (Node *); //função chamada pelo destrutor que destroi a árvore recursivamente a partir da raiz
+    Node* copiarNodos (const Node *root) const;
+    
     public:
-    bool leafCheck(Node *n) const;
-    //void buildTreeCode(Node *root) ;
-    void buildTreeCode(Node *root, string aux);
-    void auxiliar();
-    void printCode();
-    void printTree(Node *root) const; //função debugger
-    HuffmanTree(int freqs[256]);
-    void Destroy (Node *);
+    HuffmanTree(int freqs[256]); //construtor da classe que recebe o vetor automático da frequencia de caracteres oriundo da main
+    bool leafCheck(Node *n) const; //função que verifica se o nodo atual é uma folha
+    void printCode() const;//função que printa o código de cada caracter na árvore
+    void printTree(Node *root) const; //função debugger que printa a arvore atual
+
     
     //Funções primordiais do código.
     void comprimir(MyVec<bool> &out, const MyVec<char> &in) const;
     void descomprimir(MyVec<char> &out, const MyVec<bool> &in) const;
     
+    
     /*Métodos inerentes á classe*/
-
     //Destrutor 
     ~HuffmanTree();
     //Construtor de cópia
     HuffmanTree(const HuffmanTree &other);
     //Operador de atribuição
-    //HuffmanTree &operator=(const HuffmanTree &);
+    HuffmanTree &operator=(const HuffmanTree &);
 
 
 };

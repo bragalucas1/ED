@@ -27,6 +27,7 @@ int main() {
 	//A frequencia nao precisa ser necessariamente a mesma dos
 	//dados de entrada (nessa entrada a frequencia de B e'2, nao 8)
 	//O ideal eh que a frequencia seja a mesma! (isso poderia gerar uma compressao)
+	
 	MyVec<bool> comprimido;
 	arvore.comprimir(comprimido, in);
 	for(int i=0;i< comprimido.size();i++){
